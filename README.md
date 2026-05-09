@@ -1,6 +1,6 @@
-# Qualitree Homepage
+# Qualytree Homepage
 
-Qualitree 회사 홈페이지 (qualitree.co.kr) — 랜딩 페이지.
+Qualytree 회사 홈페이지 (Qualytree.co.kr) — 랜딩 페이지.
 
 스택: Vite + React 18 + Tailwind CSS + Lucide Icons
 
@@ -40,16 +40,16 @@ npm run preview    # 빌드 결과를 로컬에서 미리보기
    ```bash
    git init
    git add .
-   git commit -m "Initial: Qualitree landing v0.1"
+   git commit -m "Initial: Qualytree landing v0.1"
    git branch -M main
    # GitHub에서 빈 repo 만든 후
-   git remote add origin https://github.com/YOUR_ID/qualitree-homepage.git
+   git remote add origin https://github.com/YOUR_ID/Qualytree-homepage.git
    git push -u origin main
    ```
 2. https://vercel.com 접속 → GitHub로 로그인
 3. **Add New → Project** → 방금 push한 repo 선택
 4. **Framework Preset: Vite** 자동 감지됨 → **Deploy** 클릭
-5. 약 1분 후 `qualitree-homepage-xxx.vercel.app` URL 발급 → 동료에게 공유
+5. 약 1분 후 `Qualytree-homepage-xxx.vercel.app` URL 발급 → 동료에게 공유
 
 ### 옵션 B. Cloudflare Pages (아키텍처 문서 권장)
 
@@ -59,7 +59,7 @@ npm run preview    # 빌드 결과를 로컬에서 미리보기
    - **Framework preset**: Vite
    - **Build command**: `npm run build`
    - **Build output directory**: `dist`
-4. **Save and Deploy** → `qualitree-homepage.pages.dev` URL 발급
+4. **Save and Deploy** → `Qualytree-homepage.pages.dev` URL 발급
 
 ### 옵션 C. Netlify (드래그·드롭 가장 간편)
 
@@ -73,7 +73,7 @@ GitHub 없이도 가능:
 
 ---
 
-## 커스텀 도메인 연결 (qualitree.co.kr)
+## 커스텀 도메인 연결 (Qualytree.co.kr)
 
 Vercel/Cloudflare/Netlify 모두 대시보드의 **Domains** 메뉴에서 도메인 추가 후 안내된 DNS 레코드를 도메인 등록업체(가비아/후이즈 등)에 입력하면 끝.
 
@@ -82,7 +82,7 @@ Vercel/Cloudflare/Netlify 모두 대시보드의 **Domains** 메뉴에서 도메
 ## 폴더 구조
 
 ```
-qualitree-homepage/
+Qualytree-homepage/
 ├── public/
 │   └── favicon.svg
 ├── src/
@@ -104,4 +104,4 @@ qualitree-homepage/
 - 메인 대시보드 (`#ENT-002`)
 - 온보딩 5단계 (`#ONB-001~005`) — 회사·제품·공정·다중 규제·자격
 
-플랫폼은 `app.qualitree.co.kr` 별도 도메인·별도 보안 경계로 분리합니다 (Project Instructions §11.3 / Modular Architecture §6).
+플랫폼은 `app.Qualytree.co.kr` 별도 도메인·별도 보안 경계로 분리합니다 (Project Instructions §11.3 / Modular Architecture §6).
