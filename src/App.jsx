@@ -180,7 +180,7 @@ export default function App() {
               className="font-display text-[22px] font-medium tracking-tight"
               style={{ color: "var(--ink)" }}
             >
-              Qualytree
+              Qualitree
             </span>
             <span
               className="font-mono text-[10px] uppercase tracking-[0.18em] ml-1 mt-1 hidden sm:inline"
@@ -424,14 +424,14 @@ export default function App() {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
           <SectionHeader
             number="01"
-            kicker="WHY Qualytree"
+            kicker="WHY QUALITREE"
             title={
               <>
                 글로벌 SaaS도 <em className="font-display italic">놓친</em>{" "}
                 자리.<br />한국 영세·중소 제조사부터 글로벌 진출까지.
               </>
             }
-            sub="Greenlight Guru · MasterControl · Qualio · Veeva가 공통적으로 RA 전문가를 사용 전제로 한다면, Qualytree는 RA 비전공자도 사용 가능한 가이드형 워크플로우를 핵심으로 둡니다."
+            sub="Greenlight Guru · MasterControl · Qualio · Veeva가 공통적으로 RA 전문가를 사용 전제로 한다면, Qualitree는 RA 비전공자도 사용 가능한 가이드형 워크플로우를 핵심으로 둡니다."
           />
 
           {/* Highlight 6 */}
@@ -717,7 +717,7 @@ export default function App() {
               className="font-mono text-[11px] tracking-[0.22em] uppercase"
               style={{ color: "var(--amber)" }}
             >
-              05 · WHO BUILDS Qualytree
+              05 · WHO BUILDS QUALITREE
             </div>
             <h2
               className="font-display mt-4 leading-[1.02]"
@@ -730,8 +730,8 @@ export default function App() {
               className="mt-6 text-[15px] leading-[1.65]"
               style={{ color: "var(--ink-soft)" }}
             >
-              ISO 13485 · KGMP 운영 노하우(Moreh Company), 미국 510(k) 진출 실무
-              경험(SOLCO Biomedical USA), 그리고 NB 출신 컨설팅 백그라운드(TÜV).
+              정형외과 의료기기 분야의 ISO 13485 · KGMP 운영 노하우, 해외 인증
+              진출 실무 경험, 그리고 외자기업 출신의 NB 심사·인증 백그라운드.
               관념적인 RA 도구가 아니라 — 직접 서류를 만들고, 현장을 돌리고,
               심사를 받아본 사람들이 만드는 SaaS입니다.
             </p>
@@ -741,17 +741,17 @@ export default function App() {
             {[
               {
                 tag: "FOUNDATION",
-                t: "Moreh Company",
+                t: "정형외과 의료기기",
                 s: "ISO 13485 · KGMP 운영 노하우",
               },
               {
                 tag: "GLOBAL",
-                t: "SOLCO Biomedical USA",
+                t: "해외 인증 진출",
                 s: "미국 510(k) 진출 실무",
               },
               {
                 tag: "AUDIT",
-                t: "TÜV 출신 공동창업",
+                t: "외자기업 심사·인증",
                 s: "Notified Body 심사관 경험",
               },
             ].map((b, i) => (
@@ -939,7 +939,7 @@ export default function App() {
               >
                 CONTACT
               </div>
-              <div className="mt-1">contact@Qualytree.co.kr</div>
+              <div className="mt-1">contact@qualitree.co.kr</div>
             </div>
             <div>
               <div
@@ -955,9 +955,9 @@ export default function App() {
                 className="font-mono text-[10px] tracking-[0.2em] uppercase"
                 style={{ color: "var(--amber-soft)" }}
               >
-                PARTNERS
+                EXPERTISE
               </div>
-              <div className="mt-1">Moreh · SOLCO Biomedical · TÜV</div>
+              <div className="mt-1">정형외과 · 해외인증 · 외자기업</div>
             </div>
           </div>
         </div>
@@ -983,13 +983,13 @@ export default function App() {
               <circle cx="7" cy="9" r="1.6" fill="var(--amber)" />
               <circle cx="21" cy="7" r="1.6" fill="var(--leaf)" />
             </svg>
-            Qualytree
+            Qualitree
           </div>
           <div
             className="font-mono text-[11px] tracking-[0.14em]"
             style={{ color: "var(--ink-mute)" }}
           >
-            © 2026 Qualytree CO., LTD. — QUALITY GROWS LIKE A TREE.
+            © 2026 QUALITREE CO., LTD. — QUALITY GROWS LIKE A TREE.
           </div>
         </div>
       </footer>
