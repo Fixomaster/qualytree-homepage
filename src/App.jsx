@@ -214,7 +214,7 @@ export default function App() {
           <div className="flex items-center gap-2">
             <a
               href="https://qualytree-app.vercel.app/login"
-              target="_blank"
+              
               rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center text-[14px] px-3.5 py-2 rounded-full hover:bg-black/5 transition"
               style={{ color: "var(--ink)" }}
@@ -223,7 +223,7 @@ export default function App() {
             </a>
             <a
               href="https://qualytree-app.vercel.app/signup"
-              target="_blank"
+              
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-[14px] px-4 py-2 rounded-full transition hover:opacity-90"
               style={{ backgroundColor: "var(--moss)", color: "var(--paper)" }}
@@ -315,7 +315,7 @@ export default function App() {
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <a
                 href="https://qualytree-app.vercel.app/signup"
-                target="_blank"
+                
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-[15px] font-medium hover:opacity-90 transition"
                 style={{
@@ -922,7 +922,7 @@ export default function App() {
                 </div>
                 <a
                   href={b.href}
-                  target={b.primary ? "_blank" : undefined}
+                  target={undefined}
                   rel={b.primary ? "noopener noreferrer" : undefined}
                   className="mt-6 inline-flex items-center gap-2 text-[14px]"
                   style={{
