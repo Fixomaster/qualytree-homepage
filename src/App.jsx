@@ -147,6 +147,9 @@ export default function App() {
         .rule { position: relative; height: 1px; background: rgba(20,58,44,0.14); }
         .rule::after { content: ''; position: absolute; left: 0; top: -1px; width: 48px; height: 3px; background: var(--amber); }
 
+        .certmap img { min-width: 960px; }
+        @media (min-width: 1024px) { .certmap img { min-width: 0; } }
+
         html { scroll-behavior: smooth; }
         body { background: var(--paper); }
       `}</style>
@@ -569,34 +572,29 @@ export default function App() {
                 Certification landscape
               </div>
               <div className="font-mono text-[10px] tracking-[0.14em] uppercase" style={{ color: "var(--ink-mute)" }}>
-                글자 크기 = 글로벌 수요 빈도 (상대)
+                글자 크기 = 글로벌 수요·비용 규모 (상대) · 모바일은 좌우로 넘겨 보세요
               </div>
             </div>
             <div
-              className="mt-6 rounded-[24px] px-6 py-10 lg:px-12 lg:py-14 flex flex-wrap items-baseline justify-center gap-x-6 gap-y-3 lg:gap-x-9"
-              style={{ backgroundColor: "rgba(20,58,44,0.04)", border: "1px solid rgba(20,58,44,0.10)" }}
+              className="mt-6 rounded-[24px] overflow-x-auto certmap"
+              style={{ border: "1px solid rgba(20,58,44,0.10)", backgroundColor: "#F8F4EC" }}
             >
-              {certCloud.map((c, i) => (
-                <span
-                  key={i}
-                  className="font-display leading-none"
-                  style={{
-                    fontSize: CLOUD_SIZE[c.w],
-                    fontWeight: c.w === 3 ? 480 : c.w === 2 ? 440 : 380,
-                    color: c.w === 3 ? "var(--moss)" : c.w === 2 ? "var(--ink)" : "var(--ink-mute)",
-                    fontStyle: c.w === 0 ? "italic" : "normal",
-                    whiteSpace: "nowrap",
-                  }}
-                  title={c.d}
-                >
-                  {c.n}
-                </span>
-              ))}
+              <picture>
+                <source srcSet="/cert-landscape.webp" type="image/webp" />
+                <img
+                  src="/cert-landscape.png"
+                  alt="글로벌 의료기기 인증·허가 지형 — ISO 13485를 중심으로 각국 허가와 제품별 시험 표준을 세계지도 위에 배치한 그림"
+                  width="2600"
+                  height="1180"
+                  loading="lazy"
+                  style={{ display: "block", width: "100%", height: "auto", minWidth: 960 }}
+                />
+              </picture>
             </div>
             <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[10.5px] tracking-[0.14em] uppercase" style={{ color: "var(--ink-mute)" }}>
               <span><b style={{ color: "var(--moss)" }}>■</b> 사실상 필수 (QMS · 주요 시장 허가)</span>
               <span><b style={{ color: "var(--ink)" }}>■</b> 진출 시장에 따라 필요</span>
-              <span>■ 제품 특성별 시험·표준</span>
+              <span>■ 제품 특성별 시험·표준 · 지역 규제</span>
             </div>
           </div>
         </div>
@@ -1164,44 +1162,6 @@ const audiences = [
     t: "위탁 제조·개발",
     s: "전부 위탁·일부 위탁 구조에서 위·수탁 간 책임과 기록의 경계를 명확히.",
   },
-];
-
-const CLOUD_SIZE = {
-  3: "clamp(34px, 4.6vw, 64px)",
-  2: "clamp(22px, 2.6vw, 36px)",
-  1: "clamp(15px, 1.5vw, 21px)",
-  0: "clamp(13px, 1.1vw, 15px)",
-};
-
-// w: 3 = 사실상 필수, 2 = 진출 시장에 따라 필요, 1 = 제품 특성별 시험·표준, 0 = 특수·보조
-const certCloud = [
-  { n: "ISO 13485", w: 3, d: "품질경영시스템 — 모든 인증의 뿌리" },
-  { n: "CE MDR", w: 3, d: "EU 의료기기 규정 (2017/745)" },
-  { n: "FDA 510(k)", w: 3, d: "미국 시판 전 신고" },
-  { n: "KGMP", w: 3, d: "한국 제조·품질관리기준 (MFDS)" },
-  { n: "ISO 14971", w: 2, d: "위험관리" },
-  { n: "MDSAP", w: 2, d: "단일 심사 프로그램 — 미국·캐나다·호주·브라질·일본" },
-  { n: "FDA QMSR", w: 2, d: "21 CFR Part 820 (2026)" },
-  { n: "UKCA", w: 2, d: "영국" },
-  { n: "Health Canada MDL", w: 2, d: "캐나다" },
-  { n: "TGA", w: 2, d: "호주" },
-  { n: "PMDA · J-GMP", w: 2, d: "일본" },
-  { n: "NMPA", w: 2, d: "중국" },
-  { n: "ANVISA", w: 1, d: "브라질" },
-  { n: "ISO 10993", w: 1, d: "생체적합성" },
-  { n: "IEC 60601", w: 1, d: "전기 의료기기 안전" },
-  { n: "IEC 62304", w: 1, d: "의료기기 소프트웨어" },
-  { n: "IEC 62366", w: 1, d: "사용적합성" },
-  { n: "ISO 11135 · 11137", w: 1, d: "멸균 밸리데이션" },
-  { n: "ISO 11607", w: 1, d: "멸균 포장" },
-  { n: "ISO 14155", w: 1, d: "임상시험" },
-  { n: "UDI", w: 1, d: "GUDID · EUDAMED · MFDS" },
-  { n: "FDA PMA", w: 1, d: "미국 시판 전 승인 (Class III)" },
-  { n: "De Novo", w: 0, d: "미국 신규 분류" },
-  { n: "IEC 81001-5-1", w: 0, d: "사이버보안" },
-  { n: "ISO 7206 · ASTM F1717", w: 0, d: "임플란트 성능시험" },
-  { n: "MFDS 수입허가", w: 0, d: "수입업체" },
-  { n: "ISO/IEC 27001", w: 0, d: "정보보안" },
 ];
 
 const supportItems = [
