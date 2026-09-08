@@ -11,6 +11,10 @@ import {
   Factory,
   Activity,
   Landmark,
+  Sparkles,
+  FlaskConical,
+  Users,
+  Send,
 } from "lucide-react";
 
 const APP_URL = "https://qualytree-app.vercel.app";
@@ -194,6 +198,9 @@ export default function App() {
             <a className="hover:opacity-70 transition" href="#about">
               회사
             </a>
+            <a className="hover:opacity-70 transition" href="#grant">
+              정부지원사업
+            </a>
           </div>
 
           <div className="flex items-center gap-2">
@@ -246,7 +253,7 @@ export default function App() {
                 className="w-1.5 h-1.5 rounded-full pulse-soft"
                 style={{ backgroundColor: "var(--leaf)" }}
               />
-              MEDICAL DEVICE · RA + eQMS
+              MEDICAL DEVICE · RA + eQMS · 제조사 · 수입업체 · OEM
             </div>
 
             <h1
@@ -422,6 +429,30 @@ export default function App() {
             ))}
           </div>
 
+          {/* Who it's for */}
+          <div
+            className="mt-6 grid md:grid-cols-3 gap-4"
+            data-reveal
+          >
+            {audiences.map((a, i) => (
+              <div
+                key={i}
+                className="card p-7 rounded-[20px]"
+                style={{ backgroundColor: "var(--paper)", border: "1px solid rgba(20,58,44,0.14)" }}
+              >
+                <div className="font-mono text-[10px] tracking-[0.2em] uppercase" style={{ color: "var(--amber)" }}>
+                  {a.tag}
+                </div>
+                <div className="mt-3 font-display text-[22px] leading-tight" style={{ fontWeight: 460 }}>
+                  {a.t}
+                </div>
+                <div className="mt-2 text-[13.5px] leading-[1.6]" style={{ color: "var(--ink-soft)" }}>
+                  {a.s}
+                </div>
+              </div>
+            ))}
+          </div>
+
           <p
             className="mt-10 max-w-[720px] text-[14.5px] leading-[1.7]"
             style={{ color: "var(--ink-mute)" }}
@@ -530,10 +561,106 @@ export default function App() {
               </div>
             </div>
           </div>
+
+          {/* Certification landscape — typographic cloud */}
+          <div className="mt-20" data-reveal>
+            <div className="flex items-baseline justify-between flex-wrap gap-3">
+              <div className="font-mono text-[11px] tracking-[0.22em] uppercase" style={{ color: "var(--amber)" }}>
+                Certification landscape
+              </div>
+              <div className="font-mono text-[10px] tracking-[0.14em] uppercase" style={{ color: "var(--ink-mute)" }}>
+                글자 크기 = 글로벌 수요 빈도 (상대)
+              </div>
+            </div>
+            <div
+              className="mt-6 rounded-[24px] px-6 py-10 lg:px-12 lg:py-14 flex flex-wrap items-baseline justify-center gap-x-6 gap-y-3 lg:gap-x-9"
+              style={{ backgroundColor: "rgba(20,58,44,0.04)", border: "1px solid rgba(20,58,44,0.10)" }}
+            >
+              {certCloud.map((c, i) => (
+                <span
+                  key={i}
+                  className="font-display leading-none"
+                  style={{
+                    fontSize: CLOUD_SIZE[c.w],
+                    fontWeight: c.w === 3 ? 480 : c.w === 2 ? 440 : 380,
+                    color: c.w === 3 ? "var(--moss)" : c.w === 2 ? "var(--ink)" : "var(--ink-mute)",
+                    fontStyle: c.w === 0 ? "italic" : "normal",
+                    whiteSpace: "nowrap",
+                  }}
+                  title={c.d}
+                >
+                  {c.n}
+                </span>
+              ))}
+            </div>
+            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[10.5px] tracking-[0.14em] uppercase" style={{ color: "var(--ink-mute)" }}>
+              <span><b style={{ color: "var(--moss)" }}>■</b> 사실상 필수 (QMS · 주요 시장 허가)</span>
+              <span><b style={{ color: "var(--ink)" }}>■</b> 진출 시장에 따라 필요</span>
+              <span>■ 제품 특성별 시험·표준</span>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ===================== 03 · QUALITY TREE ===================== */}
+      {/* ===================== 03 · SUPPORT ===================== */}
+      <section
+        id="support"
+        className="relative py-24 lg:py-32"
+        style={{ backgroundColor: "var(--paper-deep)" }}
+      >
+        <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
+          <div data-reveal>
+            <SectionHeader
+              number="03"
+              kicker="BEYOND THE SOFTWARE"
+              title={
+                <>
+                  소프트웨어 너머,
+                  <br />
+                  <em className="font-display italic">사람과 연결</em>까지.
+                </>
+              }
+              sub="플랫폼 안에서 정리된 기록은 초안 작성, 시험 의뢰, 인증 심사, 당국 제출로 자연스럽게 이어져야 합니다. Qualytree는 소프트웨어 바깥의 그 연결까지 함께 준비합니다."
+            />
+          </div>
+
+          <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {supportItems.map((t, i) => (
+              <div
+                key={i}
+                className="card relative p-7 rounded-[18px]"
+                style={{ backgroundColor: "var(--paper)", border: "1px solid rgba(20,58,44,0.12)" }}
+                data-reveal={String(i)}
+              >
+                <div className="flex items-start justify-between">
+                  <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center"
+                    style={{ backgroundColor: "var(--moss)", color: "var(--paper)" }}
+                  >
+                    {t.icon}
+                  </div>
+                  {t.soon && (
+                    <span
+                      className="font-mono text-[9.5px] tracking-[0.16em] uppercase px-2 py-1 rounded-full"
+                      style={{ border: "1px solid rgba(200,119,45,0.5)", color: "var(--amber)" }}
+                    >
+                      준비 중
+                    </span>
+                  )}
+                </div>
+                <div className="mt-5 font-display text-[20px] leading-tight" style={{ fontWeight: 460 }}>
+                  {t.title}
+                </div>
+                <div className="mt-2 text-[13.5px] leading-[1.6]" style={{ color: "var(--ink-soft)" }}>
+                  {t.body}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===================== 04 · QUALITY TREE ===================== */}
       <section
         className="relative py-24 lg:py-32 grain"
         style={{ backgroundColor: "var(--moss)", color: "var(--paper)" }}
@@ -544,7 +671,7 @@ export default function App() {
               className="font-mono text-[11px] tracking-[0.22em] uppercase"
               style={{ color: "var(--amber-soft)" }}
             >
-              03 · QUALITY TREE
+              04 · QUALITY TREE
             </div>
             <h2
               className="font-display mt-4 leading-[1.02]"
@@ -583,7 +710,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ===================== 04 · DATA & SECURITY ===================== */}
+      {/* ===================== 05 · DATA & SECURITY ===================== */}
       <section
         id="trust"
         className="relative py-24 lg:py-32"
@@ -592,7 +719,7 @@ export default function App() {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
           <div data-reveal>
             <SectionHeader
-              number="04"
+              number="05"
               kicker="DATA INTEGRITY · SECURITY"
               title={
                 <>
@@ -670,7 +797,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ===================== 05 · PEOPLE ===================== */}
+      {/* ===================== 06 · PEOPLE ===================== */}
       <section
         id="people"
         className="relative py-24 lg:py-32"
@@ -679,7 +806,7 @@ export default function App() {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
           <div data-reveal>
             <SectionHeader
-              number="05"
+              number="06"
               kicker="PEOPLE · CONTINUITY"
               title={
                 <>
@@ -734,12 +861,12 @@ export default function App() {
         </div>
       </section>
 
-      {/* ===================== 06 · ABOUT ===================== */}
+      {/* ===================== 07 · ABOUT ===================== */}
       <section id="about" className="relative py-24 lg:py-32">
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5" data-reveal>
             <div className="font-mono text-[11px] tracking-[0.22em] uppercase" style={{ color: "var(--amber)" }}>
-              06 · WHO BUILDS QUALYTREE
+              07 · WHO BUILDS QUALYTREE
             </div>
             <h2
               className="font-display mt-4 leading-[1.02]"
@@ -760,7 +887,7 @@ export default function App() {
           <div className="lg:col-span-7 grid sm:grid-cols-3 gap-4 content-start">
             {[
               { tag: "FOUNDATION", t: "의료기기 제조", s: "정형외과 임플란트 · ISO 13485 / KGMP 운영" },
-              { tag: "GLOBAL", t: "해외 인허가", s: "미국·유럽 진출 실무" },
+              { tag: "GLOBAL", t: "해외 인허가", s: "미국 진출 실무 · 유럽 진출 준비 중" },
               { tag: "AUDIT", t: "심사·인증", s: "외자기업 · Notified Body 심사 경험" },
             ].map((b, i) => (
               <div
@@ -802,6 +929,7 @@ export default function App() {
             GET STARTED
           </div>
           <h2
+            id="grant"
             className="font-display mt-4 leading-[0.98]"
             style={{ fontSize: "clamp(44px, 7vw, 96px)", fontWeight: 360 }}
           >
@@ -810,7 +938,7 @@ export default function App() {
             <em className="italic">글로벌 진출까지.</em>
           </h2>
 
-          <div className="mt-12 grid md:grid-cols-2 gap-4 max-w-[900px]">
+          <div className="mt-12 grid lg:grid-cols-3 gap-4">
             {[
               {
                 t: "도입 신청",
@@ -818,6 +946,12 @@ export default function App() {
                 b: "신청하기",
                 href: `${APP_URL}/signup`,
                 primary: true,
+              },
+              {
+                t: "정부지원사업 문의",
+                s: "K-스타트업, TIPS, 규제자유특구 등 정부지원사업과 연계한 도입 패키지를 안내합니다.",
+                b: "문의하기",
+                href: "mailto:contact@qualytree.co.kr?subject=%5BQualytree%5D%20%EC%A0%95%EB%B6%80%EC%A7%80%EC%9B%90%EC%82%AC%EC%97%85%20%EB%AC%B8%EC%9D%98",
               },
               {
                 t: "도입 상담",
@@ -874,7 +1008,7 @@ export default function App() {
               <div className="font-mono text-[10px] tracking-[0.2em] uppercase" style={{ color: "var(--amber-soft)" }}>
                 LOCATION
               </div>
-              <div className="mt-1">대한민국 · 2026 설립 예정</div>
+              <div className="mt-1">대한민국</div>
             </div>
             <div>
               <div className="font-mono text-[10px] tracking-[0.2em] uppercase" style={{ color: "var(--amber-soft)" }}>
@@ -1014,6 +1148,86 @@ const frameworks = [
   { code: "ISO 14971:2019", name: "위험관리", scope: "설계부터 시판 후까지 이어지는 위험관리 파일." },
 ];
 
+const audiences = [
+  {
+    tag: "MANUFACTURER",
+    t: "제조사",
+    s: "설계·제조·검사·출하까지, 국내 허가와 해외 인증을 한 체계에서.",
+  },
+  {
+    tag: "IMPORTER",
+    t: "수입업체",
+    s: "수입관리기준서, 외국제조소 GMP, 품목 허가 현황, 통관 기록까지 수입업 요건에 맞춘 구성.",
+  },
+  {
+    tag: "OEM · ODM",
+    t: "위탁 제조·개발",
+    s: "전부 위탁·일부 위탁 구조에서 위·수탁 간 책임과 기록의 경계를 명확히.",
+  },
+];
+
+const CLOUD_SIZE = {
+  3: "clamp(34px, 4.6vw, 64px)",
+  2: "clamp(22px, 2.6vw, 36px)",
+  1: "clamp(15px, 1.5vw, 21px)",
+  0: "clamp(13px, 1.1vw, 15px)",
+};
+
+// w: 3 = 사실상 필수, 2 = 진출 시장에 따라 필요, 1 = 제품 특성별 시험·표준, 0 = 특수·보조
+const certCloud = [
+  { n: "ISO 13485", w: 3, d: "품질경영시스템 — 모든 인증의 뿌리" },
+  { n: "CE MDR", w: 3, d: "EU 의료기기 규정 (2017/745)" },
+  { n: "FDA 510(k)", w: 3, d: "미국 시판 전 신고" },
+  { n: "KGMP", w: 3, d: "한국 제조·품질관리기준 (MFDS)" },
+  { n: "ISO 14971", w: 2, d: "위험관리" },
+  { n: "MDSAP", w: 2, d: "단일 심사 프로그램 — 미국·캐나다·호주·브라질·일본" },
+  { n: "FDA QMSR", w: 2, d: "21 CFR Part 820 (2026)" },
+  { n: "UKCA", w: 2, d: "영국" },
+  { n: "Health Canada MDL", w: 2, d: "캐나다" },
+  { n: "TGA", w: 2, d: "호주" },
+  { n: "PMDA · J-GMP", w: 2, d: "일본" },
+  { n: "NMPA", w: 2, d: "중국" },
+  { n: "ANVISA", w: 1, d: "브라질" },
+  { n: "ISO 10993", w: 1, d: "생체적합성" },
+  { n: "IEC 60601", w: 1, d: "전기 의료기기 안전" },
+  { n: "IEC 62304", w: 1, d: "의료기기 소프트웨어" },
+  { n: "IEC 62366", w: 1, d: "사용적합성" },
+  { n: "ISO 11135 · 11137", w: 1, d: "멸균 밸리데이션" },
+  { n: "ISO 11607", w: 1, d: "멸균 포장" },
+  { n: "ISO 14155", w: 1, d: "임상시험" },
+  { n: "UDI", w: 1, d: "GUDID · EUDAMED · MFDS" },
+  { n: "FDA PMA", w: 1, d: "미국 시판 전 승인 (Class III)" },
+  { n: "De Novo", w: 0, d: "미국 신규 분류" },
+  { n: "IEC 81001-5-1", w: 0, d: "사이버보안" },
+  { n: "ISO 7206 · ASTM F1717", w: 0, d: "정형·척추 임플란트 성능시험" },
+  { n: "MFDS 수입허가", w: 0, d: "수입업체" },
+  { n: "ISO/IEC 27001", w: 0, d: "정보보안" },
+];
+
+const supportItems = [
+  {
+    title: "AI 초안 지원",
+    body: "정리된 기록을 바탕으로 문서 초안을 먼저 제안합니다. 검토와 최종 승인은 언제나 담당자의 몫입니다.",
+    icon: <Sparkles size={18} strokeWidth={1.7} />,
+  },
+  {
+    title: "인증시험·시험소 연계",
+    body: "생체적합성, 전기안전, 성능시험 등 필요한 시험을 파악하고 시험소·인증기관과의 진행을 이어 줍니다.",
+    icon: <FlaskConical size={18} strokeWidth={1.7} />,
+  },
+  {
+    title: "전문가 인증 지원",
+    body: "구축·심사 대응이 필요할 때, 현장 경험이 있는 전문가가 플랫폼의 기록 위에서 함께 진행합니다.",
+    icon: <Users size={18} strokeWidth={1.7} />,
+  },
+  {
+    title: "당국 신청·통지 연계",
+    body: "식약처·FDA·인증기관 신청 패키지 준비와 보완·통지 수신을 한 흐름으로 잇는 기능을 준비하고 있습니다.",
+    icon: <Send size={18} strokeWidth={1.7} />,
+    soon: true,
+  },
+];
+
 const trustItems = [
   {
     title: "전자기록·전자서명",
@@ -1029,7 +1243,7 @@ const trustItems = [
   },
   {
     title: "시스템 검증",
-    body: "컴퓨터화 시스템 검증 원칙에 따라 검증 문서를 갖추고, 고객사가 자체 검증에 활용할 수 있는 자료를 제공합니다.",
+    body: "컴퓨터화 시스템 검증 원칙에 따라 검증 문서를 갖추고 있으며, 고객사 자체 검증용 자료 제공을 준비하고 있습니다.",
     tag: "GAMP 5 · CSV",
     icon: <Shield size={18} strokeWidth={1.7} />,
   },
