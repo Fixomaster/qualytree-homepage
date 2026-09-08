@@ -877,7 +877,7 @@ export default function App() {
               <em className="italic">심사를 받아본</em> 사람들.
             </h2>
             <p className="mt-6 text-[15px] leading-[1.7]" style={{ color: "var(--ink-soft)" }}>
-              정형외과 의료기기 제조 현장의 ISO 13485 · KGMP 운영 경험, 해외
+              의료기기 제조 현장의 ISO 13485 · KGMP 운영 경험, 해외
               인허가 실무, 그리고 외자기업과 인증기관 심사 배경. 관념적인 도구가
               아니라 — 직접 서류를 만들고, 공장을 돌리고, 심사를 받아본 사람들이
               만드는 플랫폼입니다.
@@ -886,7 +886,7 @@ export default function App() {
 
           <div className="lg:col-span-7 grid sm:grid-cols-3 gap-4 content-start">
             {[
-              { tag: "FOUNDATION", t: "의료기기 제조", s: "정형외과 임플란트 · ISO 13485 / KGMP 운영" },
+              { tag: "FOUNDATION", t: "의료기기 제조", s: "임플란트 제조 · ISO 13485 / KGMP 운영" },
               { tag: "GLOBAL", t: "해외 인허가", s: "미국 진출 실무 · 유럽 진출 준비 중" },
               { tag: "AUDIT", t: "심사·인증", s: "외자기업 · Notified Body 심사 경험" },
             ].map((b, i) => (
@@ -1014,7 +1014,7 @@ export default function App() {
               <div className="font-mono text-[10px] tracking-[0.2em] uppercase" style={{ color: "var(--amber-soft)" }}>
                 EXPERTISE
               </div>
-              <div className="mt-1">정형외과 · 해외인증 · 외자기업</div>
+              <div className="mt-1">의료기기 제조 · 해외인증 · 외자기업</div>
             </div>
           </div>
         </div>
@@ -1199,7 +1199,7 @@ const certCloud = [
   { n: "FDA PMA", w: 1, d: "미국 시판 전 승인 (Class III)" },
   { n: "De Novo", w: 0, d: "미국 신규 분류" },
   { n: "IEC 81001-5-1", w: 0, d: "사이버보안" },
-  { n: "ISO 7206 · ASTM F1717", w: 0, d: "정형·척추 임플란트 성능시험" },
+  { n: "ISO 7206 · ASTM F1717", w: 0, d: "임플란트 성능시험" },
   { n: "MFDS 수입허가", w: 0, d: "수입업체" },
   { n: "ISO/IEC 27001", w: 0, d: "정보보안" },
 ];
