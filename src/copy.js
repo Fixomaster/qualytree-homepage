@@ -1,0 +1,260 @@
+// Landing page copy — English (default) and Korean.
+// Keep both objects structurally identical.
+
+export const COPY = {
+  en: {
+    htmlLang: "en",
+    title: "Qualytree — Quality grows like a tree.",
+    meta: "Qualytree — regulatory affairs (RA) and electronic QMS in one system for medical device makers. ISO 13485 · KGMP · FDA QMSR · EU MDR · MDSAP, with regulatory-grade data integrity.",
+    nav: { platform: "Platform", compliance: "Compliance", trust: "Data & Security", people: "People", about: "Company", grant: "Grants", login: "Log in", signup: "Request access", signupShort: "Apply", langLabel: "언어", langSwitch: "한국어" },
+    hero: {
+      h1a: "Quality grows",
+      h1b: "like a tree.",
+      tagline: "품질은 나무처럼 자랍니다.",
+      p1: "Regulatory affairs and the quality management system, in one body of records.",
+      p2: "Whatever the certification, whoever is in charge — the same standard, the same record.",
+      p3: "On data integrity at the level regulators require.",
+    },
+    principles: [
+      { k: "One.", t: "One system", s: "From submission prep to day-to-day quality management, scattered files and tools come together in one place." },
+      { k: "Every.", t: "Every market", s: "From KGMP at home to ISO 13485, FDA and EU MDR — add markets without adding a second set of rules." },
+      { k: "Whole.", t: "Whole record", s: "Who changed what, when and why stays on record. In an audit you show it instead of explaining it." },
+    ],
+    platform: {
+      number: "01", kicker: "THE PLATFORM",
+      titleA: "Regulatory and quality,", titleEm: "one system", titleB: ".",
+      sub: "Submission files here, quality records there, shop-floor logs somewhere else — a device maker's quality information has always been scattered. Qualytree was designed from the start as one system for regulatory affairs (RA) and the electronic QMS.",
+      pillars: [
+        { title: "Regulatory Affairs", en: "인허가", body: "From domestic approval to overseas certification — preparation, submission, changes and renewals in one flow. Because submission files grow from the same root as quality records, reconciling versions before an audit disappears." },
+        { title: "Electronic QMS", en: "품질경영시스템", body: "Document and record control, change control, CAPA, training and competence, supplier management, internal audit, management review — every area a standard QMS requires, built in." },
+        { title: "Production & Inspection", en: "제조·검사", body: "Process and inspection results are recorded as quality records themselves, not in a separate ledger. Nonconformities found on the floor flow straight into the quality system." },
+        { title: "Post-Market", en: "시판 후 관리", body: "Complaint and adverse-event intake and reporting, traceability, periodic safety review. What happens after launch feeds back into risk management and improvement." },
+      ],
+      audiences: [
+        { tag: "MANUFACTURER", t: "Manufacturers", s: "Design, production, inspection and release — domestic approval and overseas certification in one system." },
+        { tag: "IMPORTER", t: "Importers", s: "Import management standards, foreign-manufacturer GMP, product licence status and customs records, shaped to importer requirements." },
+        { tag: "OEM · ODM", t: "Contract manufacturing", s: "Full or partial outsourcing — with clear boundaries of responsibility and records between the parties." },
+      ],
+      note: "The areas are not separate modules; they run on the same records. What is entered once is cited wherever it is needed, so nothing is written twice and no second version appears.",
+    },
+    compliance: {
+      number: "02", kicker: "COMPLIANCE FRAMEWORKS",
+      titleA: "Any certification,", titleEm: "the same place", titleB: ".",
+      sub: "Domestic approval and overseas entry ask for the same things in different languages. Instead of building a separate pile of files for each certification, you set up the company's quality system once and view it through each market's requirements.",
+      frameworks: [
+        { code: "ISO 13485:2016", name: "Quality management system", scope: "The common root of every certification — the skeleton of the system." },
+        { code: "KGMP", name: "Korea GMP (MFDS)", scope: "MFDS approval and inspection — the starting point for Korean manufacturers." },
+        { code: "FDA QMSR", name: "21 CFR Part 820", scope: "US market entry. Reflects the 2026 QMSR transition." },
+        { code: "EU MDR 2017/745", name: "EU Medical Device Regulation", scope: "Technical documentation, clinical evaluation, post-market surveillance." },
+        { code: "MDSAP", name: "Single Audit Program", scope: "US, Canada, Australia, Brazil and Japan in one audit." },
+        { code: "ISO 14971:2019", name: "Risk management", scope: "A risk management file that runs from design to post-market." },
+      ],
+      cardKicker: "Multi-market, one baseline",
+      cardTitleA: "Add a market,", cardTitleEm: "keep the system.",
+      cardBody: "ISO 13485 is the root; the differences of KGMP, QMSR and MDR sit on top of it. Preparing a new certification does not mean starting over — only adding what the existing system lacks.",
+      cardBullets: ["Regulatory changes tracked and reflected on an ongoing basis", "Records arranged for each certification's audit perspective", "The same data from domestic approval to overseas certification"],
+      mapKicker: "Certification landscape",
+      mapNote: "Type size = relative global demand and cost · scroll sideways on mobile",
+      mapAlt: "Global medical device certification landscape — ISO 13485 at the centre, national approvals placed over their countries, product-specific test standards around them",
+      legend: ["Effectively mandatory — QMS · major-market approval", "Required by target market", "Product-specific tests, standards · regional regulators"],
+    },
+    support: {
+      number: "03", kicker: "BEYOND THE SOFTWARE",
+      titleA: "Beyond the software,", titleEm: "the people and connections", titleB: ".",
+      sub: "Records organised in the platform have to lead somewhere: to drafts, test orders, certification audits and regulatory submissions. Qualytree prepares those connections outside the software as well.",
+      soon: "In preparation",
+      items: [
+        { title: "AI-assisted drafts", body: "Document drafts proposed from the records already in the system. Review and final approval always stay with the person in charge." },
+        { title: "Test lab coordination", body: "Identify the biocompatibility, electrical-safety and performance tests you need and carry the work forward with test labs and certification bodies." },
+        { title: "Expert certification support", body: "When build-out or audit response is needed, practitioners with shop-floor experience work alongside you on the platform's own records." },
+        { title: "Regulator submission link", body: "Preparing MFDS, FDA and certification-body submission packages and receiving deficiency notices in one flow — in preparation.", soon: true },
+      ],
+    },
+    tree: {
+      kicker: "04 · QUALITY TREE",
+      titleA: "A quality system is,", titleEm: "by nature, a tree.",
+      body: "Design history, device master record, risk management, corrective and preventive action — all branch from one root: the product. Qualytree carries that structure into the system, so you can always follow where any record came from.",
+      bullets: ["Design, production and quality records organised per product", "The reach of a change seen as structure", "The documents an auditor asks for, shown on the spot"],
+      leaves: [["Design input", "Verification", "History"], ["BOM", "Drawings", "Process"], ["FMEA", "Residual", "Controls"], ["NCR", "RCA", "Effectiveness"]],
+      caption1: "ONE PRODUCT · ONE ROOT · EVERY RECORD", caption2: "QUALITY GROWS LIKE A TREE",
+      legend: ["Root", "Branch", "Leaf"],
+    },
+    trust: {
+      number: "05", kicker: "DATA INTEGRITY · SECURITY",
+      titleA: "Data stays.", titleEm: "Records prove.", titleB: "",
+      sub: "The first question when moving a quality system to software is not features but the trustworthiness of the record. Qualytree takes electronic-record and electronic-signature rules and computerised-system validation principles as design premises.",
+      items: [
+        { title: "Electronic records & signatures", body: "The electronic-record and e-signature requirements of 21 CFR Part 11 and EU Annex 11, built into the base structure.", tag: "Part 11 · Annex 11" },
+        { title: "Audit trail", body: "Who changed what, when and why is kept as an immutable history. Records are not deleted; they accumulate as versions.", tag: "Audit Trail · ALCOA+" },
+        { title: "System validation", body: "Validation documentation maintained under computerised-system validation principles; a customer validation package is in preparation.", tag: "GAMP 5 · CSV" },
+        { title: "Retention · security · backup", body: "Retention aligned to statutory periods, end-to-end encryption, scheduled backup and recovery. The data remains the customer's.", tag: "Retention · Encryption" },
+      ],
+      designedTo: "Designed to",
+      pills: ["21 CFR Part 11", "EU Annex 11", "GAMP 5", "ALCOA+", "ISO/IEC 27001", "ISMS-P", "SOC 2", "GDPR", "PIPA (Korea)"],
+    },
+    people: {
+      number: "06", kicker: "PEOPLE · CONTINUITY",
+      titleA: "Quality that is not", titleEm: "limited by", titleB: " one person's capacity.",
+      sub: "This is not a claim that RA and QA staff are unnecessary. It means that whoever is in charge, and however long they have done it, the company's quality level does not hinge on one person's skill and memory — the standards, procedures and history live in the system.",
+      cards: [
+        { tag: "CONTINUITY", t: "When the person changes,\nthe system continues.", s: "Rationale and progress live in the company's records, not in a personal inbox. Handover happens through records, not memory." },
+        { tag: "CONSISTENCY", t: "Same standard,\nregardless of tenure.", s: "What to do, why, and in what order sits in the system. A newly joined colleague continues on exactly the standard the company set." },
+        { tag: "FOCUS", t: "Experts focus\non judgement.", s: "Less time on repetitive collation and cross-checking; experienced staff spend their capacity where judgement is actually needed." },
+      ],
+    },
+    about: {
+      kicker: "07 · WHO BUILDS QUALYTREE",
+      titleA: "Built on the floor,", titleEm: "audited for real", titleB: ".",
+      body: "ISO 13485 and KGMP operations in medical device manufacturing, hands-on overseas regulatory work, and audit backgrounds from multinational companies and certification bodies. Not an abstract tool — a platform built by people who have written the files, run the plant and sat through the audits.",
+      cards: [
+        { tag: "FOUNDATION", t: "Device manufacturing", s: "Implant manufacturing · ISO 13485 / KGMP operations" },
+        { tag: "GLOBAL", t: "Overseas regulatory", s: "US market entry · EU entry in preparation" },
+        { tag: "AUDIT", t: "Audit & certification", s: "Multinational and Notified Body audit experience" },
+      ],
+    },
+    cta: {
+      kicker: "GET STARTED",
+      titleA: "From the first certification", titleEm: "to global markets.",
+      cards: [
+        { t: "Request access", s: "Leave your company details; after review by the team we will send account instructions.", b: "Apply" },
+        { t: "Government grants", s: "Adoption packages linked to Korean programmes such as K-Startup, TIPS and regulatory sandboxes.", b: "Enquire" },
+        { t: "Talk to us", s: "Tell us your current quality system and target certifications; we will scope the right starting point together.", b: "Send an email" },
+      ],
+      contact: "CONTACT", location: "LOCATION", locationV: "Republic of Korea", expertise: "EXPERTISE", expertiseV: "Device manufacturing · Overseas regulatory · Multinational",
+    },
+    footer: "© 2026 QUALYTREE CO., LTD. — QUALITY GROWS LIKE A TREE.",
+  },
+
+  ko: {
+    htmlLang: "ko",
+    title: "Qualytree — 품질은 나무처럼 자랍니다.",
+    meta: "Qualytree — 의료기기 인허가(RA)와 전자 품질경영시스템(eQMS)을 하나의 체계로. ISO 13485 · KGMP · FDA QMSR · EU MDR · MDSAP 대응, 규제급 데이터 무결성.",
+    nav: { platform: "플랫폼", compliance: "인증 체계", trust: "데이터·보안", people: "사람", about: "회사", grant: "정부지원사업", login: "로그인", signup: "도입 신청", signupShort: "신청", langLabel: "Language", langSwitch: "English" },
+    hero: {
+      h1a: "품질은",
+      h1b: "나무처럼 자랍니다.",
+      tagline: "Quality grows like a tree.",
+      p1: "의료기기 인허가와 품질경영시스템을 하나의 체계로.",
+      p2: "어떤 인증 체계든, 누가 담당하든, 같은 기준과 같은 기록으로 관리됩니다.",
+      p3: "규제가 요구하는 수준의 데이터 무결성 위에서.",
+    },
+    principles: [
+      { k: "One.", t: "하나의 체계", s: "인허가 준비부터 일상적인 품질경영까지, 흩어진 파일과 시스템을 한 자리에 모읍니다." },
+      { k: "Every.", t: "모든 인증", s: "국내 KGMP에서 ISO 13485, FDA, EU MDR까지 — 목표 시장이 늘어나도 기준은 한 벌입니다." },
+      { k: "Whole.", t: "완전한 기록", s: "누가, 언제, 무엇을, 왜 바꿨는지가 남습니다. 심사 앞에서 설명할 필요 없이 보여주면 됩니다." },
+    ],
+    platform: {
+      number: "01", kicker: "THE PLATFORM",
+      titleA: "인허가와 품질경영,", titleEm: "한 체계", titleB: " 안에서.",
+      sub: "인허가 서류는 여기, 품질기록은 저기, 현장 기록은 또 다른 곳 — 의료기기 제조사의 품질 정보는 늘 흩어져 있었습니다. Qualytree는 인허가(RA)와 전자 품질경영시스템(eQMS)을 처음부터 하나의 체계로 설계했습니다.",
+      pillars: [
+        { title: "인허가", en: "Regulatory Affairs", body: "국내 허가부터 해외 인증까지, 준비·제출·변경·갱신을 한 흐름으로 관리합니다. 인허가 서류가 품질기록과 같은 뿌리에서 나오므로, 심사 때 서로 다른 버전을 맞추는 일이 사라집니다." },
+        { title: "품질경영시스템", en: "Electronic QMS", body: "문서·기록 관리, 변경관리, 시정·예방조치, 교육·자격, 공급자 관리, 내부심사, 경영검토 — 표준 품질경영시스템이 요구하는 전 영역을 기본으로 갖추었습니다." },
+        { title: "제조·검사", en: "Production & Inspection", body: "공정 기록과 검사 결과가 별도의 대장이 아니라 품질기록 그 자체로 남습니다. 현장에서 발생하는 부적합은 그 자리에서 품질 체계로 이어집니다." },
+        { title: "시판 후 관리", en: "Post-Market", body: "불만·이상사례 접수와 보고, 추적관리, 정기 안전성 검토까지. 시판 이후의 정보가 위험관리와 개선 활동으로 되돌아옵니다." },
+      ],
+      audiences: [
+        { tag: "MANUFACTURER", t: "제조사", s: "설계·제조·검사·출하까지, 국내 허가와 해외 인증을 한 체계에서." },
+        { tag: "IMPORTER", t: "수입업체", s: "수입관리기준서, 외국제조소 GMP, 품목 허가 현황, 통관 기록까지 수입업 요건에 맞춘 구성." },
+        { tag: "OEM · ODM", t: "위탁 제조·개발", s: "전부 위탁·일부 위탁 구조에서 위·수탁 간 책임과 기록의 경계를 명확히." },
+      ],
+      note: "각 영역은 별개의 모듈이 아니라 같은 기록 위에서 움직입니다. 한 곳에서 남긴 기록이 필요한 자리에 그대로 인용되므로, 같은 내용을 두 번 쓰거나 서로 다른 버전이 생길 이유가 없습니다.",
+    },
+    compliance: {
+      number: "02", kicker: "COMPLIANCE FRAMEWORKS",
+      titleA: "어떤 인증 체계든,", titleEm: "같은 자리", titleB: "에서.",
+      sub: "국내 허가와 해외 진출은 서로 다른 언어로 같은 것을 요구합니다. 인증마다 별도의 파일 더미를 만드는 대신, 회사의 품질 체계를 한 번 세우고 목표 시장의 요구사항으로 바라봅니다.",
+      frameworks: [
+        { code: "ISO 13485:2016", name: "품질경영시스템", scope: "모든 인증의 공통 뿌리. 체계의 기본 골격이 됩니다." },
+        { code: "KGMP", name: "국내 제조·품질관리기준", scope: "식약처 허가·심사 대응, 국내 제조사의 출발점." },
+        { code: "FDA QMSR", name: "21 CFR Part 820", scope: "미국 진출. 2026년 QMSR 전환 요구사항 반영." },
+        { code: "EU MDR 2017/745", name: "유럽 의료기기 규정", scope: "기술문서, 임상평가, 시판 후 감시 요구사항." },
+        { code: "MDSAP", name: "단일 심사 프로그램", scope: "미국·캐나다·호주·브라질·일본 동시 대응." },
+        { code: "ISO 14971:2019", name: "위험관리", scope: "설계부터 시판 후까지 이어지는 위험관리 파일." },
+      ],
+      cardKicker: "Multi-market, one baseline",
+      cardTitleA: "시장이 하나 늘어나도,", cardTitleEm: "체계는 그대로.",
+      cardBody: "ISO 13485를 뿌리로 두고 KGMP, QMSR, MDR의 차이를 그 위에 얹습니다. 새 인증을 준비할 때 처음부터 다시 시작하는 것이 아니라, 이미 있는 체계에 부족한 부분만 더합니다.",
+      cardBullets: ["제·개정되는 규제 요구사항을 지속 반영", "인증별 심사 관점에 맞춘 기록 구성", "국내 허가에서 해외 인증까지 같은 데이터로"],
+      mapKicker: "Certification landscape",
+      mapNote: "글자 크기 = 글로벌 수요·비용 규모 (상대) · 모바일은 좌우로 넘겨 보세요",
+      mapAlt: "글로벌 의료기기 인증·허가 지형 — ISO 13485를 중심으로 각국 허가와 제품별 시험 표준을 세계지도 위에 배치한 그림",
+      legend: ["사실상 필수 — QMS · 주요 시장 허가", "진출 시장에 따라 필요", "제품 특성별 시험·표준 · 지역 규제"],
+    },
+    support: {
+      number: "03", kicker: "BEYOND THE SOFTWARE",
+      titleA: "소프트웨어 너머,", titleEm: "사람과 연결", titleB: "까지.",
+      sub: "플랫폼 안에서 정리된 기록은 초안 작성, 시험 의뢰, 인증 심사, 당국 제출로 자연스럽게 이어져야 합니다. Qualytree는 소프트웨어 바깥의 그 연결까지 함께 준비합니다.",
+      soon: "준비 중",
+      items: [
+        { title: "AI 초안 지원", body: "정리된 기록을 바탕으로 문서 초안을 먼저 제안합니다. 검토와 최종 승인은 언제나 담당자의 몫입니다." },
+        { title: "인증시험·시험소 연계", body: "생체적합성, 전기안전, 성능시험 등 필요한 시험을 파악하고 시험소·인증기관과의 진행을 이어 줍니다." },
+        { title: "전문가 인증 지원", body: "구축·심사 대응이 필요할 때, 현장 경험이 있는 전문가가 플랫폼의 기록 위에서 함께 진행합니다." },
+        { title: "당국 신청·통지 연계", body: "식약처·FDA·인증기관 신청 패키지 준비와 보완·통지 수신을 한 흐름으로 잇는 기능을 준비하고 있습니다.", soon: true },
+      ],
+    },
+    tree: {
+      kicker: "04 · QUALITY TREE",
+      titleA: "품질 체계는 본래", titleEm: "나무의 구조입니다.",
+      body: "설계 이력, 제품 기준서, 위험관리, 시정·예방조치 — 모두 한 제품이라는 뿌리에서 갈라져 나옵니다. Qualytree는 이 구조를 그대로 시스템에 옮겨, 어느 기록이 어디에서 비롯되었는지를 언제나 따라갈 수 있게 합니다.",
+      bullets: ["제품 단위로 정리되는 설계·제조·품질 기록", "변경이 닿는 범위를 구조로 파악", "심사 시 요구 문서를 그 자리에서 제시"],
+      leaves: [["설계 입력", "검증 보고", "이력"], ["BOM", "도면", "공정"], ["FMEA", "잔존", "통제"], ["NCR", "RCA", "효과성"]],
+      caption1: "ONE PRODUCT · ONE ROOT · EVERY RECORD", caption2: "QUALITY GROWS LIKE A TREE",
+      legend: ["Root", "Branch", "Leaf"],
+    },
+    trust: {
+      number: "05", kicker: "DATA INTEGRITY · SECURITY",
+      titleA: "데이터는 남고,", titleEm: "기록은 증명", titleB: "됩니다.",
+      sub: "품질 시스템을 디지털로 옮길 때 가장 먼저 물어야 할 것은 기능이 아니라 기록의 신뢰성입니다. Qualytree는 전자기록·전자서명 규정과 컴퓨터화 시스템 검증 원칙을 설계의 전제로 두었습니다.",
+      items: [
+        { title: "전자기록·전자서명", body: "21 CFR Part 11과 EU Annex 11이 요구하는 전자기록·전자서명 요건을 기본 구조로 갖추었습니다.", tag: "Part 11 · Annex 11" },
+        { title: "감사 추적", body: "누가, 언제, 무엇을, 왜 변경했는지가 변경 불가능한 이력으로 남습니다. 기록은 지워지지 않고 버전으로 쌓입니다.", tag: "Audit Trail · ALCOA+" },
+        { title: "시스템 검증", body: "컴퓨터화 시스템 검증 원칙에 따라 검증 문서를 갖추고 있으며, 고객사 자체 검증용 자료 제공을 준비하고 있습니다.", tag: "GAMP 5 · CSV" },
+        { title: "보관·보안·백업", body: "법정 보관 기간에 맞춘 기록 보존, 전 구간 암호화, 정기 백업과 복구 절차. 데이터는 고객의 것으로 남습니다.", tag: "Retention · Encryption" },
+      ],
+      designedTo: "Designed to",
+      pills: ["21 CFR Part 11", "EU Annex 11", "GAMP 5", "ALCOA+", "ISO/IEC 27001", "ISMS-P", "SOC 2", "GDPR", "개인정보보호법"],
+    },
+    people: {
+      number: "06", kicker: "PEOPLE · CONTINUITY",
+      titleA: "담당자의 역량에", titleEm: "갇히지 않는", titleB: " 품질.",
+      sub: "RA·QA 담당자가 필요 없다는 뜻이 아닙니다. 담당자가 누구든, 경력이 얼마든, 회사의 품질 수준이 한 사람의 역량과 기억에 좌우되지 않도록 — 기준과 절차와 이력이 시스템 안에 남아 있게 합니다.",
+      cards: [
+        { tag: "CONTINUITY", t: "담당자가 바뀌어도\n체계는 이어집니다.", s: "결정의 근거와 진행 상태가 개인의 메일함이 아니라 회사의 기록으로 남습니다. 인수인계는 기억이 아닌 기록으로 이루어집니다." },
+        { tag: "CONSISTENCY", t: "경력에 상관없이\n같은 기준으로.", s: "무엇을, 왜, 어떤 순서로 해야 하는지가 체계 안에 있습니다. 새로 합류한 담당자도 회사가 세운 기준 그대로 일을 이어갑니다." },
+        { tag: "FOCUS", t: "전문가는\n판단에 집중합니다.", s: "반복되는 정리와 대조에 쓰던 시간을 줄이고, 경험 있는 담당자는 정말 판단이 필요한 자리에 역량을 씁니다." },
+      ],
+    },
+    about: {
+      kicker: "07 · WHO BUILDS QUALYTREE",
+      titleA: "현장에서 만들고,", titleEm: "심사를 받아본", titleB: " 사람들.",
+      body: "의료기기 제조 현장의 ISO 13485 · KGMP 운영 경험, 해외 인허가 실무, 그리고 외자기업과 인증기관 심사 배경. 관념적인 도구가 아니라 — 직접 서류를 만들고, 공장을 돌리고, 심사를 받아본 사람들이 만드는 플랫폼입니다.",
+      cards: [
+        { tag: "FOUNDATION", t: "의료기기 제조", s: "임플란트 제조 · ISO 13485 / KGMP 운영" },
+        { tag: "GLOBAL", t: "해외 인허가", s: "미국 진출 실무 · 유럽 진출 준비 중" },
+        { tag: "AUDIT", t: "심사·인증", s: "외자기업 · Notified Body 심사 경험" },
+      ],
+    },
+    cta: {
+      kicker: "GET STARTED",
+      titleA: "첫 인증부터", titleEm: "글로벌 진출까지.",
+      cards: [
+        { t: "도입 신청", s: "회사 정보를 남겨 주시면 운영진 검토를 거쳐 계정을 안내해 드립니다.", b: "신청하기" },
+        { t: "정부지원사업 문의", s: "K-스타트업, TIPS, 규제자유특구 등 정부지원사업과 연계한 도입 패키지를 안내합니다.", b: "문의하기" },
+        { t: "도입 상담", s: "현재 품질 체계와 목표 인증을 알려 주시면 적합한 도입 범위를 함께 검토합니다.", b: "메일 보내기" },
+      ],
+      contact: "CONTACT", location: "LOCATION", locationV: "대한민국", expertise: "EXPERTISE", expertiseV: "의료기기 제조 · 해외인증 · 외자기업",
+    },
+    footer: "© 2026 QUALYTREE CO., LTD. — QUALITY GROWS LIKE A TREE.",
+  },
+};
+
+export function detectLang() {
+  try {
+    const q = new URLSearchParams(window.location.search).get("lang");
+    if (q === "ko" || q === "en") return q;
+    const saved = window.localStorage.getItem("qt.lang");
+    if (saved === "ko" || saved === "en") return saved;
+  } catch (e) { /* ignore */ }
+  return "en";
+}
