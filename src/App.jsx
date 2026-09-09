@@ -225,7 +225,6 @@ export default function App() {
           <div className="hidden lg:flex items-center gap-8 text-[14px]">
             <a className="nav-link" href="#platform">{c.nav.features}</a>
             <a className="nav-link" href="#trial">{c.nav.trial}</a>
-            <a className="nav-link" href={`${APP_URL}/signup`}>{c.nav.signup}</a>
             <a className="nav-link" href="#about">{c.nav.about}</a>
             <a className="nav-link" href="#contact">{c.nav.contact}</a>
           </div>

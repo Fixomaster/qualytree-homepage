@@ -150,7 +150,7 @@ export const COPY = {
     htmlLang: "ko",
     title: "Qualytree — 품질은 나무처럼 자랍니다.",
     meta: "Qualytree — 의료기기 인허가(RA)와 전자 품질경영시스템(eQMS)을 하나의 체계로. ISO 13485 · KGMP · FDA QMSR · EU MDR · MDSAP 대응, 규제급 데이터 무결성.",
-    nav: { features: "주요기능", trial: "체험하기", signup: "가입하기", about: "회사소개", contact: "영업팀 문의", login: "로그인", signupShort: "가입", langLabel: "Language", langSwitch: "English" },
+    nav: { features: "주요기능", trial: "체험하기", signup: "가입하기", about: "회사소개", contact: "영업팀 문의", login: "로그인", signupShort: "가입하기", langLabel: "Language", langSwitch: "English" },
     trial: {
       number: "08", kicker: "TRY IT",
       titleA: "가입 전에,", titleEm: "먼저 보고", titleB: " 결정하세요.",
