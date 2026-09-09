@@ -19,7 +19,8 @@ export default async function handler(req, res) {
   if (req.method !== "POST") { res.status(405).json({ ok: false, error: "method_not_allowed" }); return; }
 
   const key = process.env.RESEND_API_KEY;
-  if (!key) { res.status(200).json({ ok: false, error: "not_configured" }); return; }
+  // 폴백 수신 주소: Resend 키가 없을 때 FormSubmit 릴레이로 전달 (최초 1회 수신자 활성화 필요)
+  const FALLBACK_TO = process.env.CONTACT_FALLBACK_TO || "mrjee75@gmail.com";
 
   let body = req.body;
   if (typeof body === "string") { try { body = JSON.parse(body); } catch { body = {}; } }
@@ -46,6 +47,36 @@ export default async function handler(req, res) {
   <div style="white-space:pre-wrap;border:1px solid #e5e7eb;border-radius:8px;padding:12px;background:#fafafa">${esc(message)}</div>
 </div>`;
   const text = rows.map(([k, v]) => `${k}: ${v}`).join("\n") + "\n\n" + message;
+
+  if (!key) {
+    // Resend 미설정 → FormSubmit(무료 이메일 릴레이)로 즉시 전달. 최초 1회 FALLBACK_TO 메일함에서 "Activate" 클릭 필요.
+    try {
+      const r = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(FALLBACK_TO)}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          _subject: subject,
+          _template: "table",
+          _replyto: email,
+          "회사 / Company": company,
+          "담당자 / Name": name,
+          "이메일 / Email": email,
+          "연락처 / Phone": phone,
+          "유형 / Topic": topic,
+          "언어 / Language": lang,
+          "문의 내용 / Message": message,
+        }),
+      });
+      const j = await r.json().catch(() => null);
+      if (r.ok && j && String(j.success) === "true") { res.status(200).json({ ok: true, via: "relay" }); return; }
+      console.error("formsubmit error", r.status, j);
+      res.status(502).json({ ok: false, error: "send_failed" });
+    } catch (e) {
+      console.error("formsubmit exception", e);
+      res.status(502).json({ ok: false, error: "send_failed" });
+    }
+    return;
+  }
 
   try {
     const r = await fetch(RESEND_URL, {
