@@ -88,27 +88,43 @@ export default function App() {
   const toggleLang = () => setLang((l) => (l === "en" ? "ko" : "en"));
 
   // Contact form (opens the visitor's mail app with a prepared message)
-  const [form, setForm] = useState({ company: "", name: "", email: "", phone: "", topic: 0, message: "" });
+  const EMPTY_FORM = { company: "", name: "", email: "", phone: "", topic: 0, message: "" };
+  const [form, setForm] = useState(EMPTY_FORM);
+  const [sendState, setSendState] = useState("idle"); // idle | sending | sent | done | error | not_configured
   const contactRef = useRef(null);
+  const firstFieldRef = useRef(null);
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim());
+  const formComplete = !!(form.company.trim() && form.name.trim() && emailOk && form.phone.trim() && form.message.trim());
   const goContact = (topic) => (e) => {
     if (e) e.preventDefault();
     if (typeof topic === "number") setForm((f) => ({ ...f, topic }));
+    if (sendState === "done" || sendState === "sent") setSendState("idle");
     if (contactRef.current) contactRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    setTimeout(() => { if (firstFieldRef.current) firstFieldRef.current.focus({ preventScroll: true }); }, 600);
   };
-  const submitContact = (e) => {
+  const submitContact = async (e) => {
     e.preventDefault();
-    const t = c.contact.topics[form.topic] || "";
-    const subject = `[Qualytree] ${t} — ${form.company || ""}`.trim();
-    const lines = [
-      `${c.contact.fields.company}: ${form.company}`,
-      `${c.contact.fields.name}: ${form.name}`,
-      `${c.contact.fields.email}: ${form.email}`,
-      `${c.contact.fields.phone}: ${form.phone}`,
-      `${c.contact.fields.topic}: ${t}`,
-      "",
-      form.message,
-    ];
-    window.location.href = `mailto:${CONTACT}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+    if (!formComplete || sendState === "sending") return;
+    setSendState("sending");
+    try {
+      const r = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, topic: c.contact.topics[form.topic] || "", lang }),
+      });
+      const j = await r.json().catch(() => null);
+      if (j && j.ok) {
+        setSendState("sent");
+        setForm(EMPTY_FORM);
+        setTimeout(() => setSendState("done"), 5000);
+      } else if (j && j.error === "not_configured") {
+        setSendState("not_configured");
+      } else {
+        setSendState("error");
+      }
+    } catch (err) {
+      setSendState("error");
+    }
   };
 
   return (
@@ -624,7 +640,7 @@ export default function App() {
       </section>
 
       {/* ===================== 09 · CONTACT ===================== */}
-      <section id="contact" ref={contactRef} className="relative py-24 lg:py-32" style={{ backgroundColor: "var(--paper)", scrollMarginTop: 80 }}>
+      <section id="contact" ref={contactRef} className="relative py-24 lg:py-32 overflow-hidden" style={{ backgroundColor: "var(--paper)", scrollMarginTop: 80 }}>
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5" data-reveal>
             <div className="flex items-baseline gap-4 font-mono text-[11px] tracking-[0.22em] uppercase" style={{ color: "var(--amber)" }}>
@@ -642,11 +658,35 @@ export default function App() {
             </div>
           </div>
 
-          <form className="lg:col-span-7 grid sm:grid-cols-2 gap-4" onSubmit={submitContact} data-reveal="1">
-            <Field label={c.contact.fields.company} value={form.company} onChange={(v) => setForm({ ...form, company: v })} required />
+          {sendState === "sent" && (
+            <div className="lg:col-span-7 flex items-center rise">
+              <div className="w-full rounded-[24px] p-10 lg:p-14 text-center" style={{ backgroundColor: "var(--paper-deep)", border: "1px solid rgba(17,21,23,0.08)" }}>
+                <div className="mx-auto w-14 h-14 rounded-full flex items-center justify-center" style={{ backgroundColor: "var(--moss)", color: "#fff" }}>
+                  <Send size={22} strokeWidth={1.8} />
+                </div>
+                <div className="mt-6 font-display" style={{ fontSize: "clamp(26px, 3vw, 36px)", fontWeight: 400 }}>{c.contact.sentTitle}</div>
+                <p className="mt-3 text-[15px] leading-[1.7] max-w-[460px] mx-auto" style={{ color: "var(--ink-soft)" }}>{c.contact.sentBody}</p>
+              </div>
+            </div>
+          )}
+          {sendState === "done" && (
+            <div className="lg:col-span-7 flex items-center rise">
+              <div className="w-full flex flex-wrap items-center justify-between gap-4 rounded-[18px] px-6 py-5" style={{ backgroundColor: "var(--paper-deep)", border: "1px solid rgba(17,21,23,0.08)" }}>
+                <span className="text-[14.5px]" style={{ color: "var(--ink-soft)" }}>{c.contact.sentTitle} {c.contact.sentBody}</span>
+                <button type="button" onClick={() => setSendState("idle")} className="inline-flex items-center gap-2 text-[14px] font-medium" style={{ color: "var(--moss)" }}>
+                  <span className="uline">{c.contact.again}</span>
+                  <ArrowUpRight size={14} />
+                </button>
+              </div>
+            </div>
+          )}
+          {sendState !== "sent" && sendState !== "done" && (
+          <form className="lg:col-span-7 grid sm:grid-cols-2 gap-4 rise" onSubmit={submitContact}>
+            <Field label={c.contact.fields.company} value={form.company} onChange={(v) => setForm({ ...form, company: v })} required inputRef={firstFieldRef} />
             <Field label={c.contact.fields.name} value={form.name} onChange={(v) => setForm({ ...form, name: v })} required />
             <Field label={c.contact.fields.email} type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} required />
-            <Field label={c.contact.fields.phone} type="tel" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} />
+            <Field label={c.contact.fields.phone} type="tel" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} required />
+            <input type="text" name="website" tabIndex={-1} autoComplete="off" value="" onChange={() => {}} style={{ position: "absolute", left: -9999, width: 1, height: 1, opacity: 0 }} aria-hidden="true" />
             <label className="sm:col-span-2 block">
               <span className="font-mono text-[10px] tracking-[0.18em] uppercase" style={{ color: "var(--ink-mute)" }}>{c.contact.fields.topic}</span>
               <select
@@ -667,6 +707,7 @@ export default function App() {
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 placeholder={c.contact.placeholder}
+                required
                 className="mt-2 w-full rounded-[12px] px-4 py-3 text-[14.5px] outline-none resize-y"
                 style={{ border: "1px solid rgba(17,21,23,0.18)", backgroundColor: "var(--paper)", color: "var(--ink)" }}
               />
@@ -674,15 +715,27 @@ export default function App() {
             <div className="sm:col-span-2 flex flex-wrap items-center gap-4 mt-2">
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-[15px] font-medium hover:opacity-90 transition"
-                style={{ backgroundColor: "var(--moss)", color: "#fff" }}
+                disabled={!formComplete || sendState === "sending"}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-[15px] font-medium transition"
+                style={{
+                  backgroundColor: formComplete ? "var(--moss)" : "rgba(17,21,23,0.12)",
+                  color: formComplete ? "#fff" : "var(--ink-mute)",
+                  cursor: formComplete && sendState !== "sending" ? "pointer" : "not-allowed",
+                }}
               >
-                {c.contact.submit}
+                {sendState === "sending" ? c.contact.sending : c.contact.submit}
                 <ArrowUpRight size={16} />
               </button>
-              <span className="text-[12.5px]" style={{ color: "var(--ink-mute)" }}>{c.contact.hint} {CONTACT}</span>
+              <span className="text-[12.5px]" style={{ color: "var(--ink-mute)" }}>{c.contact.hint}</span>
             </div>
+            {(sendState === "error" || sendState === "not_configured") && (
+              <div className="sm:col-span-2 rounded-[12px] px-4 py-3 text-[13.5px]" style={{ backgroundColor: "#FFF7ED", border: "1px solid rgba(224,137,31,0.45)", color: "#7C3E0A" }}>
+                {sendState === "error" ? c.contact.failed : c.contact.notConfigured}{" "}
+                <a href={`mailto:${CONTACT}`} className="uline">{CONTACT}</a>
+              </div>
+            )}
           </form>
+          )}
         </div>
       </section>
 
@@ -823,11 +876,12 @@ function SectionHeader({ number, kicker, title, sub }) {
   );
 }
 
-function Field({ label, value, onChange, type = "text", required = false }) {
+function Field({ label, value, onChange, type = "text", required = false, inputRef }) {
   return (
     <label className="block">
       <span className="font-mono text-[10px] tracking-[0.18em] uppercase" style={{ color: "var(--ink-mute)" }}>{label}</span>
       <input
+        ref={inputRef}
         type={type}
         value={value}
         required={required}
