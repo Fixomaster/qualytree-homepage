@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   ArrowUpRight,
   Leaf,
@@ -22,7 +22,7 @@ import { COPY, detectLang } from "./copy.js";
 
 // Platform routes are served under the same www domain via vercel.json rewrites (proxy to app.qualy-tree.com)
 const APP_URL = "";
-const CONTACT = "contact@qualytree.co.kr";
+const CONTACT = "contact@qualy-tree.com";
 
 const PILLAR_ICONS = [
   <Landmark size={18} strokeWidth={1.6} />,
@@ -86,6 +86,30 @@ export default function App() {
   }, [lang]);
 
   const toggleLang = () => setLang((l) => (l === "en" ? "ko" : "en"));
+
+  // Contact form (opens the visitor's mail app with a prepared message)
+  const [form, setForm] = useState({ company: "", name: "", email: "", phone: "", topic: 0, message: "" });
+  const contactRef = useRef(null);
+  const goContact = (topic) => (e) => {
+    if (e) e.preventDefault();
+    if (typeof topic === "number") setForm((f) => ({ ...f, topic }));
+    if (contactRef.current) contactRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+  const submitContact = (e) => {
+    e.preventDefault();
+    const t = c.contact.topics[form.topic] || "";
+    const subject = `[Qualytree] ${t} — ${form.company || ""}`.trim();
+    const lines = [
+      `${c.contact.fields.company}: ${form.company}`,
+      `${c.contact.fields.name}: ${form.name}`,
+      `${c.contact.fields.email}: ${form.email}`,
+      `${c.contact.fields.phone}: ${form.phone}`,
+      `${c.contact.fields.topic}: ${t}`,
+      "",
+      form.message,
+    ];
+    window.location.href = `mailto:${CONTACT}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+  };
 
   return (
     <div
@@ -199,12 +223,11 @@ export default function App() {
           </a>
 
           <div className="hidden lg:flex items-center gap-8 text-[14px]">
-            <a className="nav-link" href="#platform">{c.nav.platform}</a>
-            <a className="nav-link" href="#compliance">{c.nav.compliance}</a>
-            <a className="nav-link" href="#trust">{c.nav.trust}</a>
-            <a className="nav-link" href="#people">{c.nav.people}</a>
+            <a className="nav-link" href="#platform">{c.nav.features}</a>
+            <a className="nav-link" href="#trial">{c.nav.trial}</a>
+            <a className="nav-link" href={`${APP_URL}/signup`}>{c.nav.signup}</a>
             <a className="nav-link" href="#about">{c.nav.about}</a>
-            <a className="nav-link" href="#grant">{c.nav.grant}</a>
+            <a className="nav-link" href="#contact">{c.nav.contact}</a>
           </div>
 
           <div className="flex items-center gap-2">
@@ -233,8 +256,7 @@ export default function App() {
               className="inline-flex items-center gap-1.5 text-[14px] px-4 py-2 rounded-full transition hover:opacity-90 whitespace-nowrap"
               style={{ backgroundColor: "var(--leaf)", color: "var(--ink)", fontWeight: 500 }}
             >
-              <span className="hidden sm:inline">{c.nav.signup}</span>
-              <span className="sm:hidden">{c.nav.signupShort}</span>
+              <span>{c.nav.signupShort}</span>
               <ArrowUpRight size={14} strokeWidth={2} />
             </a>
           </div>
@@ -565,6 +587,106 @@ export default function App() {
         </div>
       </section>
 
+      {/* ===================== 08 · TRIAL ===================== */}
+      <section id="trial" className="relative py-24 lg:py-32" style={{ backgroundColor: "var(--paper-deep)" }}>
+        <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
+          <div data-reveal>
+            <SectionHeader
+              number={c.trial.number}
+              kicker={c.trial.kicker}
+              title={<Title a={c.trial.titleA} em={c.trial.titleEm} b={c.trial.titleB} />}
+              sub={c.trial.sub}
+            />
+          </div>
+          <div className="mt-14 grid md:grid-cols-2 gap-4">
+            {c.trial.cards.map((b, i) => (
+              <div key={i} className="card p-8 rounded-[20px] flex flex-col justify-between" style={{ backgroundColor: "var(--paper)", border: "1px solid rgba(17,21,23,0.10)" }} data-reveal={String(i)}>
+                <div>
+                  <div className="flex items-start justify-between">
+                    <div className="font-mono text-[10px] tracking-[0.2em] uppercase" style={{ color: "var(--amber)" }}>{b.tag}</div>
+                    {b.soon && (
+                      <span className="font-mono text-[9.5px] tracking-[0.16em] uppercase px-2 py-1 rounded-full" style={{ border: "1px solid rgba(224,137,31,0.5)", color: "var(--amber)" }}>
+                        {c.support.soon}
+                      </span>
+                    )}
+                  </div>
+                  <div className="mt-4 font-display text-[26px] leading-[1.15]" style={{ fontWeight: 460 }}>{b.t}</div>
+                  <div className="mt-3 text-[14.5px] leading-[1.65]" style={{ color: "var(--ink-soft)" }}>{b.s}</div>
+                </div>
+                <a href="#contact" onClick={goContact(b.kind === "demo" ? 1 : 2)} className="mt-7 inline-flex items-center gap-2 text-[14px] font-medium" style={{ color: "var(--moss)" }}>
+                  <span className="uline">{b.b}</span>
+                  <ArrowUpRight size={14} />
+                </a>
+              </div>
+            ))}
+          </div>
+          <p className="mt-8 text-[13.5px]" style={{ color: "var(--ink-mute)" }} data-reveal>{c.trial.note}</p>
+        </div>
+      </section>
+
+      {/* ===================== 09 · CONTACT ===================== */}
+      <section id="contact" ref={contactRef} className="relative py-24 lg:py-32" style={{ backgroundColor: "var(--paper)", scrollMarginTop: 80 }}>
+        <div className="max-w-[1280px] mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12">
+          <div className="lg:col-span-5" data-reveal>
+            <div className="flex items-baseline gap-4 font-mono text-[11px] tracking-[0.22em] uppercase" style={{ color: "var(--amber)" }}>
+              <span>{c.contact.number}</span>
+              <span style={{ color: "var(--ink-mute)" }}>—</span>
+              <span style={{ color: "var(--ink-soft)" }}>{c.contact.kicker}</span>
+            </div>
+            <h2 className="font-display mt-5 leading-[1.05]" style={{ fontSize: "clamp(34px, 4.8vw, 60px)", fontWeight: 380 }}>
+              <Title a={c.contact.titleA} em={c.contact.titleEm} b={c.contact.titleB} />
+            </h2>
+            <p className="mt-6 text-[15px] leading-[1.7]" style={{ color: "var(--ink-soft)" }}>{c.contact.sub}</p>
+            <div className="mt-8 text-[13.5px]" style={{ color: "var(--ink-mute)" }}>
+              {c.contact.direct}{" "}
+              <a href={`mailto:${CONTACT}`} className="uline" style={{ color: "var(--moss)" }}>{CONTACT}</a>
+            </div>
+          </div>
+
+          <form className="lg:col-span-7 grid sm:grid-cols-2 gap-4" onSubmit={submitContact} data-reveal="1">
+            <Field label={c.contact.fields.company} value={form.company} onChange={(v) => setForm({ ...form, company: v })} required />
+            <Field label={c.contact.fields.name} value={form.name} onChange={(v) => setForm({ ...form, name: v })} required />
+            <Field label={c.contact.fields.email} type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} required />
+            <Field label={c.contact.fields.phone} type="tel" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} />
+            <label className="sm:col-span-2 block">
+              <span className="font-mono text-[10px] tracking-[0.18em] uppercase" style={{ color: "var(--ink-mute)" }}>{c.contact.fields.topic}</span>
+              <select
+                value={form.topic}
+                onChange={(e) => setForm({ ...form, topic: Number(e.target.value) })}
+                className="mt-2 w-full rounded-[12px] px-4 py-3 text-[14.5px] outline-none"
+                style={{ border: "1px solid rgba(17,21,23,0.18)", backgroundColor: "var(--paper)", color: "var(--ink)" }}
+              >
+                {c.contact.topics.map((t, i) => (
+                  <option key={i} value={i}>{t}</option>
+                ))}
+              </select>
+            </label>
+            <label className="sm:col-span-2 block">
+              <span className="font-mono text-[10px] tracking-[0.18em] uppercase" style={{ color: "var(--ink-mute)" }}>{c.contact.fields.message}</span>
+              <textarea
+                rows={5}
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
+                placeholder={c.contact.placeholder}
+                className="mt-2 w-full rounded-[12px] px-4 py-3 text-[14.5px] outline-none resize-y"
+                style={{ border: "1px solid rgba(17,21,23,0.18)", backgroundColor: "var(--paper)", color: "var(--ink)" }}
+              />
+            </label>
+            <div className="sm:col-span-2 flex flex-wrap items-center gap-4 mt-2">
+              <button
+                type="submit"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-[15px] font-medium hover:opacity-90 transition"
+                style={{ backgroundColor: "var(--moss)", color: "#fff" }}
+              >
+                {c.contact.submit}
+                <ArrowUpRight size={16} />
+              </button>
+              <span className="text-[12.5px]" style={{ color: "var(--ink-mute)" }}>{c.contact.hint} {CONTACT}</span>
+            </div>
+          </form>
+        </div>
+      </section>
+
       {/* ===================== CTA ===================== */}
       <section id="cta" className="relative py-28 lg:py-36 grain" style={{ backgroundColor: "var(--ink)", color: "#fff" }}>
         <div
@@ -582,7 +704,7 @@ export default function App() {
           <div className="mt-12 grid lg:grid-cols-3 gap-4">
             {c.cta.cards.map((b, i) => {
               const primary = i === 0;
-              const href = i === 0 ? `${APP_URL}/signup` : i === 1 ? `mailto:${CONTACT}?subject=${encodeURIComponent("[Qualytree] " + b.t)}` : `mailto:${CONTACT}`;
+              const href = i === 0 ? `${APP_URL}/signup` : "#contact";
               return (
                 <div
                   key={i}
@@ -600,6 +722,7 @@ export default function App() {
                   </div>
                   <a
                     href={href}
+                    onClick={primary ? undefined : goContact(b.topic)}
                     rel={primary ? "noopener noreferrer" : undefined}
                     className="mt-6 inline-flex items-center gap-2 text-[14px]"
                     style={{ color: primary ? "var(--moss)" : "var(--amber-soft)" }}
@@ -698,6 +821,22 @@ function SectionHeader({ number, kicker, title, sub }) {
         </p>
       )}
     </div>
+  );
+}
+
+function Field({ label, value, onChange, type = "text", required = false }) {
+  return (
+    <label className="block">
+      <span className="font-mono text-[10px] tracking-[0.18em] uppercase" style={{ color: "var(--ink-mute)" }}>{label}</span>
+      <input
+        type={type}
+        value={value}
+        required={required}
+        onChange={(e) => onChange(e.target.value)}
+        className="mt-2 w-full rounded-[12px] px-4 py-3 text-[14.5px] outline-none"
+        style={{ border: "1px solid rgba(17,21,23,0.18)", backgroundColor: "var(--paper)", color: "var(--ink)" }}
+      />
+    </label>
   );
 }
 
