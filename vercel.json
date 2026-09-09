@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/(.+)", "destination": "https://app.qualy-tree.com/$1" }
+  ]
+}

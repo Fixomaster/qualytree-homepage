@@ -20,7 +20,8 @@ import HeroTree from "./components/HeroTree.jsx";
 import QualityTreeViz from "./components/QualityTreeViz.jsx";
 import { COPY, detectLang } from "./copy.js";
 
-const APP_URL = "https://qualytree-app.vercel.app";
+// Platform routes are served under the same www domain via vercel.json rewrites (proxy to app.qualy-tree.com)
+const APP_URL = "";
 const CONTACT = "contact@qualytree.co.kr";
 
 const PILLAR_ICONS = [
