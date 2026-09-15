@@ -130,7 +130,7 @@ export default function App() {
   return (
     <div
       style={{
-        // Brand tokens — Option D: white + emerald, charcoal nav
+        // Brand tokens â Option D: white + emerald, charcoal nav
         "--ink": "#111517",
         "--ink-soft": "#2B3235",
         "--ink-mute": "#5F6A6E",
@@ -234,7 +234,7 @@ export default function App() {
               className="font-mono text-[10px] uppercase tracking-[0.18em] ml-1 mt-1 hidden sm:inline"
               style={{ color: "rgba(255,255,255,0.5)" }}
             >
-              {lang === "en" ? "퀄리트리" : "Qualytree"}
+              {lang === "en" ? "íë¦¬í¸ë¦¬" : "Qualytree"}
             </span>
           </a>
 
@@ -342,7 +342,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ===================== 01 · PLATFORM ===================== */}
+      {/* ===================== 01 Â· PLATFORM ===================== */}
       <section id="platform" className="relative py-24 lg:py-32" style={{ backgroundColor: "var(--paper-deep)" }}>
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
           <div data-reveal>
@@ -381,7 +381,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ===================== 02 · COMPLIANCE ===================== */}
+      {/* ===================== 02 Â· COMPLIANCE ===================== */}
       <section id="compliance" className="relative py-24 lg:py-32">
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
           <div data-reveal>
@@ -428,7 +428,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* Certification landscape — world map */}
+          {/* Certification landscape â world map */}
           <div className="mt-20" data-reveal>
             <div className="flex items-baseline justify-between flex-wrap gap-3">
               <div className="font-mono text-[11px] tracking-[0.22em] uppercase" style={{ color: "var(--amber)" }}>{c.compliance.mapKicker}</div>
@@ -448,15 +448,15 @@ export default function App() {
               </picture>
             </div>
             <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[10.5px] tracking-[0.14em] uppercase" style={{ color: "var(--ink-mute)" }}>
-              <span><b style={{ color: "var(--moss)" }}>■</b> {c.compliance.legend[0]}</span>
-              <span><b style={{ color: "var(--ink)" }}>■</b> {c.compliance.legend[1]}</span>
-              <span>■ {c.compliance.legend[2]}</span>
+              <span><b style={{ color: "var(--moss)" }}>â </b> {c.compliance.legend[0]}</span>
+              <span><b style={{ color: "var(--ink)" }}>â </b> {c.compliance.legend[1]}</span>
+              <span>â  {c.compliance.legend[2]}</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ===================== 03 · SUPPORT ===================== */}
+      {/* ===================== 03 Â· SUPPORT ===================== */}
       <section id="support" className="relative py-24 lg:py-32" style={{ backgroundColor: "var(--paper-deep)" }}>
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
           <div data-reveal>
@@ -489,7 +489,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ===================== 04 · QUALITY TREE ===================== */}
+      {/* ===================== 04 Â· QUALITY TREE ===================== */}
       <section className="relative py-24 lg:py-32 grain" style={{ backgroundColor: "var(--deep)", color: "#fff" }}>
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5" data-reveal>
@@ -515,7 +515,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ===================== 05 · DATA & SECURITY ===================== */}
+      {/* ===================== 05 Â· DATA & SECURITY ===================== */}
       <section id="trust" className="relative py-24 lg:py-32" style={{ backgroundColor: "var(--paper)" }}>
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
           <div data-reveal>
@@ -553,7 +553,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ===================== 06 · PEOPLE ===================== */}
+      {/* ===================== 06 Â· PEOPLE ===================== */}
       <section id="people" className="relative py-24 lg:py-32" style={{ backgroundColor: "var(--paper-deep)" }}>
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
           <div data-reveal>
@@ -577,7 +577,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ===================== 07 · ABOUT ===================== */}
+      {/* ===================== 07 Â· ABOUT ===================== */}
       <section id="about" className="relative py-24 lg:py-32">
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5" data-reveal>
@@ -602,7 +602,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ===================== 08 · TRIAL ===================== */}
+      {/* ===================== 08 Â· TRIAL ===================== */}
       <section id="trial" className="relative py-24 lg:py-32" style={{ backgroundColor: "var(--paper-deep)" }}>
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
           <div data-reveal>
@@ -639,13 +639,13 @@ export default function App() {
         </div>
       </section>
 
-      {/* ===================== 09 · CONTACT ===================== */}
+      {/* ===================== 09 Â· CONTACT ===================== */}
       <section id="contact" ref={contactRef} className="relative py-24 lg:py-32 overflow-hidden" style={{ backgroundColor: "var(--paper)", scrollMarginTop: 80 }}>
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5" data-reveal>
             <div className="flex items-baseline gap-4 font-mono text-[11px] tracking-[0.22em] uppercase" style={{ color: "var(--amber)" }}>
               <span>{c.contact.number}</span>
-              <span style={{ color: "var(--ink-mute)" }}>—</span>
+              <span style={{ color: "var(--ink-mute)" }}>â</span>
               <span style={{ color: "var(--ink-soft)" }}>{c.contact.kicker}</span>
             </div>
             <h2 className="font-display mt-5 leading-[1.05]" style={{ fontSize: "clamp(34px, 4.8vw, 60px)", fontWeight: 380 }}>
@@ -818,6 +818,11 @@ export default function App() {
             <div className="font-mono text-[11px] tracking-[0.14em]" style={{ color: "var(--ink-mute)" }}>{c.footer}</div>
           </div>
         </div>
+        <div className="max-w-[1280px] mx-auto mt-5 pt-5 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[10.5px] leading-relaxed" style={{ borderTop: "1px solid rgba(17,21,23,0.08)", color: "var(--ink-mute)" }}>
+          {c.company.rows.map(([k, v]) => (
+            <span key={k}>{k}: {v}</span>
+          ))}
+        </div>
       </footer>
     </div>
   );
@@ -860,7 +865,7 @@ function SectionHeader({ number, kicker, title, sub }) {
       <div className="lg:col-span-7">
         <div className="flex items-baseline gap-4 font-mono text-[11px] tracking-[0.22em] uppercase" style={{ color: "var(--amber)" }}>
           <span>{number}</span>
-          <span style={{ color: "var(--ink-mute)" }}>—</span>
+          <span style={{ color: "var(--ink-mute)" }}>â</span>
           <span style={{ color: "var(--ink-soft)" }}>{kicker}</span>
         </div>
         <h2 className="font-display mt-5 leading-[1.05]" style={{ fontSize: "clamp(34px, 4.8vw, 60px)", fontWeight: 380, color: "var(--ink)" }}>
