@@ -815,13 +815,23 @@ export default function App() {
             <button type="button" onClick={toggleLang} className="font-mono text-[11px] tracking-[0.14em] uline" style={{ color: "var(--ink-mute)" }}>
               {c.nav.langSwitch}
             </button>
-            <div className="font-mono text-[11px] tracking-[0.14em]" style={{ color: "var(--ink-mute)" }}>{c.footer}</div>
+            {c.company.links.map(([label, href], i) => (
+              <a key={i} href={href} className="font-mono text-[11px] tracking-[0.14em] uline" style={{ color: "var(--ink-mute)" }}>{label}</a>
+            ))}
           </div>
         </div>
-        <div className="max-w-[1280px] mx-auto mt-5 pt-5 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[10.5px] leading-relaxed" style={{ borderTop: "1px solid rgba(17,21,23,0.08)", color: "var(--ink-mute)" }}>
-          {c.company.rows.map(([k, v]) => (
-            <span key={k}>{k}: {v}</span>
-          ))}
+
+        {/* Company information (legal notice) */}
+        <div className="max-w-[1280px] mx-auto mt-8 pt-6" style={{ borderTop: "1px solid rgba(17,21,23,0.08)" }}>
+          <dl className="flex flex-wrap gap-x-7 gap-y-2 text-[12.5px] leading-[1.6]" style={{ color: "var(--ink-mute)" }}>
+            {c.company.rows.map(([k, v], i) => (
+              <div key={i} className="flex gap-2">
+                <dt style={{ color: "var(--ink-soft)", fontWeight: 500, whiteSpace: "nowrap" }}>{k}</dt>
+                <dd>{String(v).includes("@") ? <a href={`mailto:${v}`} className="uline">{v}</a> : v}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="mt-4 font-mono text-[11px] tracking-[0.14em]" style={{ color: "var(--ink-mute)" }}>{c.footer}</div>
         </div>
       </footer>
     </div>
