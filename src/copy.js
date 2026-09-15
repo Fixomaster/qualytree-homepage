@@ -80,10 +80,22 @@ export const COPY = {
       cardTitleA: "Add a market,", cardTitleEm: "keep the system.",
       cardBody: "ISO 13485 is the root; the differences of KGMP, QMSR and MDR sit on top of it. Preparing a new certification does not mean starting over — only adding what the existing system lacks.",
       cardBullets: ["Regulatory changes tracked and reflected on an ongoing basis", "Records arranged for each certification's audit perspective", "The same data from domestic approval to overseas certification"],
-      mapKicker: "Certification landscape",
+      mapKicker: "Market approvals & QMS audits — by country",
       mapNote: "Type size = relative global demand and cost · scroll sideways on mobile",
-      mapAlt: "Global medical device certification landscape — ISO 13485 at the centre, national approvals placed over their countries, product-specific test standards around them",
-      legend: ["Effectively mandatory — QMS · major-market approval", "Required by target market", "Product-specific tests, standards · regional regulators"],
+      mapAlt: "World map of medical device market approvals and quality-system audits, each placed over its country — FDA 510(k), CE MDR, KGMP, NMPA, PMDA, TGA, ANVISA and others",
+      legend: ["Market approval · registration (what lets you sell there)", "Quality-system certification · audit (how your factory is assessed)"],
+      stdOpen: "Product standards & tests",
+      stdClose: "Back to map",
+      stdGroups: [
+        { name: "Quality system · risk", items: [["ISO 13485", 100], ["ISO 14971", 72], ["IEC 62366-1", 40], ["ISO/TR 24971", 28]] },
+        { name: "Electrical safety · EMC", items: [["IEC 60601-1", 70], ["IEC 60601-1-2", 52], ["IEC 60601-1-6", 30], ["IEC 60601-2-x", 30], ["IEC 61010-1", 24]] },
+        { name: "Biocompatibility", items: [["ISO 10993-1", 66], ["ISO 10993-5", 40], ["ISO 10993-10", 36], ["ISO 10993-11", 30], ["ISO 10993-18", 26]] },
+        { name: "Sterilization · packaging", items: [["ISO 11135", 44], ["ISO 11137", 44], ["ISO 17665", 34], ["ISO 11737", 30], ["ISO 11607", 34], ["ISO 14644", 26]] },
+        { name: "Software · cybersecurity", items: [["IEC 62304", 52], ["IEC 81001-5-1", 36], ["AAMI TIR57", 24], ["FDA Cybersecurity Guidance", 26]] },
+        { name: "Performance · implants", items: [["ASTM F1717", 40], ["ASTM F1798", 28], ["ASTM F543", 30], ["ASTM F382", 28], ["ASTM F2077", 26], ["ISO 7206", 26], ["ISO 14242", 22]] },
+        { name: "Clinical · post-market", items: [["ISO 14155", 46], ["MEDDEV 2.7/1 Rev.4", 32], ["MDCG 2020-13", 26], ["ISO/TR 20416", 24]] },
+        { name: "Labelling · UDI", items: [["ISO 15223-1", 40], ["ISO 20417", 30], ["GS1 · UDI", 30]] },
+      ],
     },
     support: {
       number: "03", kicker: "BEYOND THE SOFTWARE",
@@ -150,6 +162,17 @@ export const COPY = {
       contact: "CONTACT", location: "LOCATION", locationV: "Republic of Korea", expertise: "EXPERTISE", expertiseV: "Device manufacturing · Overseas regulatory · Multinational",
     },
     footer: "© 2026 QUALYTREE CO., LTD. — QUALITY GROWS LIKE A TREE.",
+    company: {
+      rows: [
+        ["Company", "Qualytree Co., Ltd."],
+        ["CEO", "Kyunghyuk Lee"],
+        ["Address", "3F, Suite 301, 738 Yanghwa-ro, Sejongdaewang-myeon, Yeoju-si, Gyeonggi-do, Republic of Korea"],
+        ["Business registration no.", "496-81-03944"],
+        ["Phone", "+82-10-3116-5997"],
+        ["Email", "contact@qualy-tree.com"],
+      ],
+      links: [],  // 이용약관·개인정보처리방침 페이지 게시 후 [["Terms of Service", "/terms"], ["Privacy Policy", "/privacy"]] 로 복구
+    },
   },
 
   ko: {
@@ -230,10 +253,22 @@ export const COPY = {
       cardTitleA: "시장이 하나 늘어나도,", cardTitleEm: "체계는 그대로.",
       cardBody: "ISO 13485를 뿌리로 두고 KGMP, QMSR, MDR의 차이를 그 위에 얹습니다. 새 인증을 준비할 때 처음부터 다시 시작하는 것이 아니라, 이미 있는 체계에 부족한 부분만 더합니다.",
       cardBullets: ["제·개정되는 규제 요구사항을 지속 반영", "인증별 심사 관점에 맞춘 기록 구성", "국내 허가에서 해외 인증까지 같은 데이터로"],
-      mapKicker: "Certification landscape",
+      mapKicker: "시장 허가 · 품질시스템 심사 — 나라별",
       mapNote: "글자 크기 = 글로벌 수요·비용 규모 (상대) · 모바일은 좌우로 넘겨 보세요",
-      mapAlt: "글로벌 의료기기 인증·허가 지형 — ISO 13485를 중심으로 각국 허가와 제품별 시험 표준을 세계지도 위에 배치한 그림",
-      legend: ["사실상 필수 — QMS · 주요 시장 허가", "진출 시장에 따라 필요", "제품 특성별 시험·표준 · 지역 규제"],
+      mapAlt: "의료기기 시장 허가와 품질시스템 심사를 해당 국가 위에 배치한 세계지도 — FDA 510(k), CE MDR, KGMP, NMPA, PMDA, TGA, ANVISA 등",
+      legend: ["시장 허가 · 등록 (그 나라에서 팔기 위한 허가)", "품질시스템 인증 · 심사 (공장·체계가 심사받는 방식)"],
+      stdOpen: "제품 표준 · 시험 보기",
+      stdClose: "지도로 돌아가기",
+      stdGroups: [
+        { name: "품질시스템 · 위험관리", items: [["ISO 13485", 100], ["ISO 14971", 72], ["IEC 62366-1", 40], ["ISO/TR 24971", 28]] },
+        { name: "전기안전 · EMC", items: [["IEC 60601-1", 70], ["IEC 60601-1-2", 52], ["IEC 60601-1-6", 30], ["IEC 60601-2-x", 30], ["IEC 61010-1", 24]] },
+        { name: "생체적합성", items: [["ISO 10993-1", 66], ["ISO 10993-5", 40], ["ISO 10993-10", 36], ["ISO 10993-11", 30], ["ISO 10993-18", 26]] },
+        { name: "멸균 · 포장", items: [["ISO 11135", 44], ["ISO 11137", 44], ["ISO 17665", 34], ["ISO 11737", 30], ["ISO 11607", 34], ["ISO 14644", 26]] },
+        { name: "소프트웨어 · 사이버보안", items: [["IEC 62304", 52], ["IEC 81001-5-1", 36], ["AAMI TIR57", 24], ["FDA Cybersecurity Guidance", 26]] },
+        { name: "성능시험 · 임플란트", items: [["ASTM F1717", 40], ["ASTM F1798", 28], ["ASTM F543", 30], ["ASTM F382", 28], ["ASTM F2077", 26], ["ISO 7206", 26], ["ISO 14242", 22]] },
+        { name: "임상 · 시판후", items: [["ISO 14155", 46], ["MEDDEV 2.7/1 Rev.4", 32], ["MDCG 2020-13", 26], ["ISO/TR 20416", 24]] },
+        { name: "라벨 · UDI", items: [["ISO 15223-1", 40], ["ISO 20417", 30], ["GS1 · UDI", 30]] },
+      ],
     },
     support: {
       number: "03", kicker: "BEYOND THE SOFTWARE",
@@ -300,6 +335,17 @@ export const COPY = {
       contact: "CONTACT", location: "LOCATION", locationV: "대한민국", expertise: "EXPERTISE", expertiseV: "의료기기 제조 · 해외인증 · 외자기업",
     },
     footer: "© 2026 QUALYTREE CO., LTD. — QUALITY GROWS LIKE A TREE.",
+    company: {
+      rows: [
+        ["상호명", "주식회사 퀄리트리"],
+        ["대표자명", "이경혁"],
+        ["사업장 주소", "경기도 여주시 세종대왕면 양화로 738, 3층 301호"],
+        ["사업자등록번호", "496-81-03944"],
+        ["연락처", "010-3116-5997"],
+        ["이메일", "contact@qualy-tree.com"],
+      ],
+      links: [],  // 약관 페이지 게시 후 [["이용약관", "/terms"], ["개인정보처리방침", "/privacy"]] 로 복구
+    },
   },
 };
 

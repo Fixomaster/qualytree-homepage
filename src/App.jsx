@@ -46,6 +46,7 @@ const TRUST_ICONS = [
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [lang, setLang] = useState(detectLang);
+  const [stdOpen, setStdOpen] = useState(false);
   const c = COPY[lang];
 
   useEffect(() => {
@@ -209,6 +210,7 @@ export default function App() {
         .lang-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); }
 
         .certmap img { min-width: 960px; }
+        .stdcell { box-shadow: 0 0 0 0.5px rgba(17,21,23,0.08); }
         @media (min-width: 1024px) { .certmap img { min-width: 0; } }
 
         html { scroll-behavior: smooth; }
@@ -428,29 +430,68 @@ export default function App() {
             </div>
           </div>
 
-          {/* Certification landscape — world map */}
+          {/* Certification landscape — world map; product standards appear on hover / tap */}
           <div className="mt-20" data-reveal>
-            <div className="flex items-baseline justify-between flex-wrap gap-3">
-              <div className="font-mono text-[11px] tracking-[0.22em] uppercase" style={{ color: "var(--amber)" }}>{c.compliance.mapKicker}</div>
-              <div className="font-mono text-[10px] tracking-[0.14em] uppercase" style={{ color: "var(--ink-mute)" }}>{c.compliance.mapNote}</div>
-            </div>
-            <div className="mt-6 rounded-[24px] overflow-x-auto certmap" style={{ border: "1px solid rgba(17,21,23,0.10)", backgroundColor: "#FFFFFF" }}>
-              <picture>
-                <source srcSet="/cert-landscape.webp" type="image/webp" />
+            <div
+              className="relative rounded-[24px] certmap"
+              style={{ border: "1px solid rgba(17,21,23,0.10)", backgroundColor: "#FFFFFF", overflow: "hidden" }}
+              onMouseEnter={() => setStdOpen(true)}
+              onMouseLeave={() => setStdOpen(false)}
+            >
+              <div className="overflow-x-auto">
                 <img
-                  src="/cert-landscape.png"
+                  src="/cert-landscape.webp"
                   alt={c.compliance.mapAlt}
-                  width="2600"
-                  height="1180"
+                  width="2200"
+                  height="998"
                   loading="lazy"
                   style={{ display: "block", width: "100%", height: "auto", minWidth: 960 }}
                 />
-              </picture>
-            </div>
-            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[10.5px] tracking-[0.14em] uppercase" style={{ color: "var(--ink-mute)" }}>
-              <span><b style={{ color: "var(--moss)" }}>■</b> {c.compliance.legend[0]}</span>
-              <span><b style={{ color: "var(--ink)" }}>■</b> {c.compliance.legend[1]}</span>
-              <span>■ {c.compliance.legend[2]}</span>
+              </div>
+
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); setStdOpen((v) => !v); }}
+                className="absolute top-4 right-4 font-mono text-[10.5px] tracking-[0.16em] uppercase rounded-full px-3.5 py-2"
+                style={{ background: stdOpen ? "var(--ink)" : "rgba(255,255,255,0.9)", color: stdOpen ? "#fff" : "var(--ink)", border: "1px solid rgba(17,21,23,0.14)", backdropFilter: "blur(6px)", zIndex: 3 }}
+                aria-pressed={stdOpen}
+              >
+                {stdOpen ? c.compliance.stdClose : c.compliance.stdOpen}
+              </button>
+
+              <div
+                className="absolute inset-0 stdoverlay"
+                style={{
+                  zIndex: 2,
+                  background: "rgba(255,255,255,0.94)",
+                  backdropFilter: "blur(4px)",
+                  opacity: stdOpen ? 1 : 0,
+                  pointerEvents: stdOpen ? "auto" : "none",
+                  transition: "opacity .35s cubic-bezier(.2,.7,.2,1)",
+                  overflowY: "auto",
+                }}
+              >
+                <div className="min-h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ paddingTop: 40 }}>
+                  {c.compliance.stdGroups.map((g, gi) => (
+                    <div key={gi} className="p-6 lg:p-7 stdcell">
+                      <div className="font-mono text-[10px] tracking-[0.2em] uppercase" style={{ color: "var(--ink-mute)" }}>{g.name}</div>
+                      <div className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1 font-display" style={{ lineHeight: 1.15, letterSpacing: "-0.01em" }}>
+                        {g.items.map(([code, w], ii) => (
+                          <span
+                            key={ii}
+                            style={{
+                              fontSize: `${(13 + (w / 100) * 17).toFixed(1)}px`,
+                              fontWeight: w >= 60 ? 600 : 400,
+                              color: w >= 60 ? "var(--moss)" : w >= 35 ? "var(--ink)" : "var(--ink-mute)",
+                              whiteSpace: "nowrap",
+                            }}
+                          >{code}</span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -815,8 +856,23 @@ export default function App() {
             <button type="button" onClick={toggleLang} className="font-mono text-[11px] tracking-[0.14em] uline" style={{ color: "var(--ink-mute)" }}>
               {c.nav.langSwitch}
             </button>
-            <div className="font-mono text-[11px] tracking-[0.14em]" style={{ color: "var(--ink-mute)" }}>{c.footer}</div>
+            {c.company.links.map(([label, href], i) => (
+              <a key={i} href={href} className="font-mono text-[11px] tracking-[0.14em] uline" style={{ color: "var(--ink-mute)" }}>{label}</a>
+            ))}
           </div>
+        </div>
+
+        {/* Company information (legal notice) */}
+        <div className="max-w-[1280px] mx-auto mt-8 pt-6" style={{ borderTop: "1px solid rgba(17,21,23,0.08)" }}>
+          <dl className="flex flex-wrap gap-x-7 gap-y-2 text-[12.5px] leading-[1.6]" style={{ color: "var(--ink-mute)" }}>
+            {c.company.rows.map(([k, v], i) => (
+              <div key={i} className="flex gap-2">
+                <dt style={{ color: "var(--ink-soft)", fontWeight: 500, whiteSpace: "nowrap" }}>{k}</dt>
+                <dd>{String(v).includes("@") ? <a href={`mailto:${v}`} className="uline">{v}</a> : v}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="mt-4 font-mono text-[11px] tracking-[0.14em]" style={{ color: "var(--ink-mute)" }}>{c.footer}</div>
         </div>
       </footer>
     </div>
