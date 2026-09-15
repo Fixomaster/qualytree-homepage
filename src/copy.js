@@ -313,7 +313,7 @@ export const COPY = {
     footer: "© 2026 QUALYTREE CO., LTD. — QUALITY GROWS LIKE A TREE.",
     company: {
       rows: [
-        ["상호명", "주식회사 퀄리트리"],
+        ["상호명", "주식회사 튀리트리"],
         ["대표자명", "이경혁"],
         ["사업장 주소", "경기도 여주시 세종대왕면 양화로 738, 3층 301호"],
         ["사업자등록번호", "496-81-03944"],
