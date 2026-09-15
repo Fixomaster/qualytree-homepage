@@ -150,17 +150,6 @@ export const COPY = {
       contact: "CONTACT", location: "LOCATION", locationV: "Republic of Korea", expertise: "EXPERTISE", expertiseV: "Device manufacturing · Overseas regulatory · Multinational",
     },
     footer: "© 2026 QUALYTREE CO., LTD. — QUALITY GROWS LIKE A TREE.",
-    company: {
-      rows: [
-        ["Company", "Qualytree Co., Ltd."],
-        ["CEO", "Kyunghyuk Lee"],
-        ["Address", "3F, Suite 301, 738 Yanghwa-ro, Sejongdaewang-myeon, Yeoju-si, Gyeonggi-do, Republic of Korea"],
-        ["Business registration no.", "496-81-03944"],
-        ["Phone", "+82-10-3116-5997"],
-        ["Email", "contact@qualy-tree.com"],
-      ],
-      links: [],
-    },
   },
 
   ko: {
@@ -311,17 +300,6 @@ export const COPY = {
       contact: "CONTACT", location: "LOCATION", locationV: "대한민국", expertise: "EXPERTISE", expertiseV: "의료기기 제조 · 해외인증 · 외자기업",
     },
     footer: "© 2026 QUALYTREE CO., LTD. — QUALITY GROWS LIKE A TREE.",
-    company: {
-      rows: [
-        ["상호명", "주식회사 튀리트리"],
-        ["대표자명", "이경혁"],
-        ["사업장 주소", "경기도 여주시 세종대왕면 양화로 738, 3층 301호"],
-        ["사업자등록번호", "496-81-03944"],
-        ["연락처", "010-3116-5997"],
-        ["이메일", "contact@qualy-tree.com"],
-      ],
-      links: [],
-    },
   },
 };
 
