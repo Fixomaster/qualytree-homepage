@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/((?!api/contact$).+)", "destination": "https://app.qualy-tree.com/$1" }
+    { "source": "/((?!api/contact$|tours(?:/.*)?$).+)", "destination": "https://app.qualy-tree.com/$1" }
   ]
 }

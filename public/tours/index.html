@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qualytree 가이드</title>
+<meta name="description" content="Qualytree 플랫폼 사용 안내 투어 모음 — 가입, 온보딩, 입력·수정 방법">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{--ground:#f6f4ee;--paper:#fff;--ink:#1a1f1c;--ink-2:#4b544f;--ink-3:#7d8781;--line:#e3e0d6;--forest:#0f3d2e;--forest-2:#17553f;--moss:#d9e6dd;--amber:#c98b2a}
+*{box-sizing:border-box}body{margin:0;background:var(--ground);color:var(--ink);font-family:"Noto Sans KR",-apple-system,sans-serif;font-size:15px;line-height:1.6}
+.wrap{max-width:980px;margin:0 auto;padding:28px 16px 56px}
+.eyebrow{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+h1{margin:4px 0 6px;font-family:Fraunces,serif;font-weight:600;font-size:30px;color:var(--forest);letter-spacing:-.02em}
+h1 span{font-family:"Noto Sans KR",sans-serif;font-size:20px;font-weight:700;color:var(--ink);margin-left:6px}
+.lead{color:var(--ink-2);max-width:60ch;margin:0 0 22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 16px 14px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:8px;min-height:150px}
+.card:hover{border-color:var(--forest)}
+.card .code{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--amber);letter-spacing:.06em}
+.card h2{margin:0;font-size:17px;font-weight:700}
+.card p{margin:0;font-size:13.5px;color:var(--ink-2);flex:1}
+.card .meta{font-size:12px;color:var(--ink-3)}
+.card.soon{opacity:.6;pointer-events:none}
+.card.soon .meta::before{content:"준비 중 · ";color:var(--amber)}
+.back{font-size:13px;color:var(--ink-3);text-decoration:none}
+.back:hover{color:var(--forest)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/">← qualy-tree.com</a>
+  <div class="eyebrow" style="margin-top:14px">Qualytree Platform · Guided Tours</div>
+  <h1>Qualytree<span>사용 안내</span></h1>
+  <p class="lead">실제 화면을 따라가며 어떤 항목을 왜 입력하는지, 그 값이 어디에 저장되고 어느 화면으로 이어지는지를 보여드립니다. 열면 자동으로 재생되고, 화면을 누르면 멈춥니다.</p>
+  <div class="grid">
+    <a class="card" href="/tours/signup/">
+      <span class="code">ONB-000</span>
+      <h2>가입 안내 — 도입 신청부터 첫 로그인까지</h2>
+      <p>사업자 확인 → 회사 정보 → 요금제·관리자·동의 → 결제·접수. 24단계, 약 1분 35초.</p>
+      <span class="meta">2026-09 · 현행 화면 기준</span>
+    </a>
+    <div class="card soon"><span class="code">ONB-001~005</span><h2>온보딩 5단계</h2><p>회사·제품·공정·인증·역할을 처음 입력하는 방법.</p><span class="meta">다음 투어</span></div>
+    <div class="card soon"><span class="code">OPS-001</span><h2>검사 단계 입력</h2><p>IQC·FAI·IPI·LAI 검사값 입력과 부적합(NCR) 자동 발의.</p><span class="meta">예정</span></div>
+    <div class="card soon"><span class="code">EDIT-001</span><h2>입력값 수정과 변경 이력</h2><p>이미 저장한 값을 고치는 방법과 감사 추적 확인.</p><span class="meta">예정</span></div>
+  </div>
+</div>
+</body>
+</html>

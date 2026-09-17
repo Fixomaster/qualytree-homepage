@@ -243,6 +243,7 @@ export default function App() {
           <div className="hidden lg:flex items-center gap-8 text-[14px]">
             <a className="nav-link" href="#platform">{c.nav.features}</a>
             <a className="nav-link" href="#trial">{c.nav.trial}</a>
+            <a className="nav-link" href="/tours/">{c.nav.guides}</a>
             <a className="nav-link" href="#about">{c.nav.about}</a>
             <a className="nav-link" href="#contact">{c.nav.contact}</a>
           </div>
@@ -654,7 +655,7 @@ export default function App() {
               sub={c.trial.sub}
             />
           </div>
-          <div className="mt-14 grid md:grid-cols-2 gap-4">
+          <div className="mt-14 grid md:grid-cols-3 gap-4">
             {c.trial.cards.map((b, i) => (
               <div key={i} className="card p-8 rounded-[20px] flex flex-col justify-between" style={{ backgroundColor: "var(--paper)", border: "1px solid rgba(17,21,23,0.10)" }} data-reveal={String(i)}>
                 <div>
@@ -669,10 +670,17 @@ export default function App() {
                   <div className="mt-4 font-display text-[26px] leading-[1.15]" style={{ fontWeight: 460 }}>{b.t}</div>
                   <div className="mt-3 text-[14.5px] leading-[1.65]" style={{ color: "var(--ink-soft)" }}>{b.s}</div>
                 </div>
-                <a href="#contact" onClick={goContact(b.kind === "demo" ? 1 : 2)} className="mt-7 inline-flex items-center gap-2 text-[14px] font-medium" style={{ color: "var(--moss)" }}>
-                  <span className="uline">{b.b}</span>
-                  <ArrowUpRight size={14} />
-                </a>
+                {b.href ? (
+                  <a href={b.href} className="mt-7 inline-flex items-center gap-2 text-[14px] font-medium" style={{ color: "var(--moss)" }}>
+                    <span className="uline">{b.b}</span>
+                    <ArrowUpRight size={14} />
+                  </a>
+                ) : (
+                  <a href="#contact" onClick={goContact(b.kind === "demo" ? 1 : 2)} className="mt-7 inline-flex items-center gap-2 text-[14px] font-medium" style={{ color: "var(--moss)" }}>
+                    <span className="uline">{b.b}</span>
+                    <ArrowUpRight size={14} />
+                  </a>
+                )}
               </div>
             ))}
           </div>
