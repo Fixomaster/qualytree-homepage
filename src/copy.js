@@ -165,7 +165,7 @@ export const COPY = {
     company: {
       rows: [
         ["Company", "Qualytree Co., Ltd."],
-        ["CEO", "Kyunghyuk Lee"],
+        ["CEO", "Kyeong Hyeok Lee"],
         ["Address", "3F, Suite 301, 738 Yanghwa-ro, Sejongdaewang-myeon, Yeoju-si, Gyeonggi-do, Republic of Korea"],
         ["Business registration no.", "496-81-03944"],
         ["Phone", "+82-10-3116-5997"],
