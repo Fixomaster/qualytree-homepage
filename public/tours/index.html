@@ -4,26 +4,31 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Qualytree 가이드</title>
-<meta name="description" content="Qualytree 플랫폼 사용 안내 투어 모음 — 가입, 온보딩, 입력·수정 방법">
+<meta name="description" content="Qualytree 플랫폼 사용 안내 투어 모음 — 가입, 온보딩, 품질문서, 검사 입력, 수정·변경관리">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
 <style>
-:root{--ground:#f6f4ee;--paper:#fff;--ink:#1a1f1c;--ink-2:#4b544f;--ink-3:#7d8781;--line:#e3e0d6;--forest:#0f3d2e;--forest-2:#17553f;--moss:#d9e6dd;--amber:#c98b2a}
+:root{--ground:#f6f4ee;--paper:#fff;--ink:#1a1f1c;--ink-2:#4b544f;--ink-3:#7d8781;--line:#e3e0d6;--forest:#0f3d2e;--forest-2:#17553f;--amber:#c98b2a}
 *{box-sizing:border-box}body{margin:0;background:var(--ground);color:var(--ink);font-family:"Noto Sans KR",-apple-system,sans-serif;font-size:15px;line-height:1.6}
-.wrap{max-width:980px;margin:0 auto;padding:28px 16px 56px}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 16px 56px}
 .eyebrow{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
 h1{margin:4px 0 6px;font-family:Fraunces,serif;font-weight:600;font-size:30px;color:var(--forest);letter-spacing:-.02em}
 h1 span{font-family:"Noto Sans KR",sans-serif;font-size:20px;font-weight:700;color:var(--ink);margin-left:6px}
-.lead{color:var(--ink-2);max-width:60ch;margin:0 0 22px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 16px 14px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:8px;min-height:150px}
-.card:hover{border-color:var(--forest)}
-.card .code{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--amber);letter-spacing:.06em}
-.card h2{margin:0;font-size:17px;font-weight:700}
-.card p{margin:0;font-size:13.5px;color:var(--ink-2);flex:1}
-.card .meta{font-size:12px;color:var(--ink-3)}
-.card.soon{opacity:.6;pointer-events:none}
-.card.soon .meta::before{content:"준비 중 · ";color:var(--amber)}
+.lead{color:var(--ink-2);max-width:60ch;margin:0 0 22px;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px 18px}
+.card{text-decoration:none;color:inherit;display:block}
+.thumb{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#0b1a14;box-shadow:0 10px 30px rgba(6,20,14,.22);transition:transform .2s ease,box-shadow .2s ease}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.28),rgba(0,0,0,0) 45%)}
+.play{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 6px 20px rgba(0,0,0,.35);transition:transform .2s ease,background .2s ease}
+.play svg{width:26px;height:26px;margin-left:4px;fill:var(--forest)}
+.dur{position:absolute;right:10px;bottom:10px;z-index:2;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:#fff;background:rgba(0,0,0,.62);padding:2px 7px;border-radius:5px;letter-spacing:.04em}
+.card:hover .thumb{transform:translateY(-3px);box-shadow:0 16px 40px rgba(6,20,14,.3)}
+.card:hover .play{transform:scale(1.08);background:#fff}
+.card:focus-visible{outline:2px solid var(--amber);outline-offset:4px;border-radius:12px}
+.cap{display:flex;align-items:baseline;gap:10px;margin-top:10px;padding:0 2px}
+.cap .code{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--amber);letter-spacing:.06em;flex:0 0 auto}
+.cap h2{margin:0;font-size:15.5px;font-weight:700;line-height:1.35}
 .back{font-size:13px;color:var(--ink-3);text-decoration:none}
 .back:hover{color:var(--forest)}
 </style>
@@ -33,37 +38,27 @@ h1 span{font-family:"Noto Sans KR",sans-serif;font-size:20px;font-weight:700;col
   <a class="back" href="/">← qualy-tree.com</a>
   <div class="eyebrow" style="margin-top:14px">Qualytree Platform · Guided Tours</div>
   <h1>Qualytree<span>사용 안내</span></h1>
-  <p class="lead">실제 화면을 따라가며 어떤 항목을 왜 입력하는지, 그 값이 어디에 저장되고 어느 화면으로 이어지는지를 보여드립니다. 열면 자동으로 재생되고, 화면을 누르면 멈춥니다.</p>
+  <p class="lead">실제 화면을 따라가는 1~2분 안내 영상입니다. 누르면 바로 재생됩니다.</p>
   <div class="grid">
     <a class="card" href="/tours/signup/">
-      <span class="code">ONB-000</span>
-      <h2>가입 안내 — 도입 신청부터 첫 로그인까지</h2>
-      <p>사업자 확인 → 회사 정보 → 요금제·관리자·동의 → 결제·접수. 24단계, 약 1분 35초.</p>
-      <span class="meta">2026-09 · 현행 화면 기준</span>
+      <div class="thumb"><img src="/tours/thumbs/signup.jpg" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="dur">1:38</span></div>
+      <div class="cap"><span class="code">ONB-000</span><h2>가입 안내</h2></div>
     </a>
     <a class="card" href="/tours/onboarding/">
-      <span class="code">ONB-001</span>
-      <h2>온보딩 6단계 — 회사·제품·조직·문서 첫 설정</h2>
-      <p>플랜 확인 → 기본정보·제품·인증 → 조직도 → 품질매뉴얼 → 절차서 → 계정 발급. 25단계, 약 1분 30초.</p>
-      <span class="meta">2026-09 · 현행 화면 기준</span>
+      <div class="thumb"><img src="/tours/thumbs/onboarding.jpg" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="dur">1:34</span></div>
+      <div class="cap"><span class="code">ONB-001</span><h2>온보딩 5단계</h2></div>
     </a>
     <a class="card" href="/tours/documents/">
-      <span class="code">DOC-001</span>
-      <h2>품질문서 작성과 승인 — 초안에서 발효·개정까지</h2>
-      <p>AI 초안 → 검토 요청 → 승인 상신 → 대표 승인·발효 → 배포·개정·폐기, 통합 문서 다운로드. 26단계.</p>
-      <span class="meta">2026-09 · 현행 화면 기준</span>
+      <div class="thumb"><img src="/tours/thumbs/documents.jpg" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="dur">1:45</span></div>
+      <div class="cap"><span class="code">DOC-001</span><h2>품질문서 작성과 승인</h2></div>
     </a>
     <a class="card" href="/tours/inspection/">
-      <span class="code">OPS-001</span>
-      <h2>검사 단계 입력 — 측정값에서 NCR·CAPA까지</h2>
-      <p>작업지시별 IQC·FAI·IPI·LAI 계획 → 샘플별 측정값 입력 → 자동 판정 → 검사관 서명 → 부적합 시 NCR·CAPA 자동 발의. 25단계.</p>
-      <span class="meta">2026-09 · 현행 화면 기준</span>
+      <div class="thumb"><img src="/tours/thumbs/inspection.jpg" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="dur">1:42</span></div>
+      <div class="cap"><span class="code">OPS-001</span><h2>검사 단계 입력</h2></div>
     </a>
     <a class="card" href="/tours/change-control/">
-      <span class="code">EDIT-001</span>
-      <h2>입력값 수정과 변경관리 — 고치면 이력이 남는 방식</h2>
-      <p>기본정보는 즉시 저장, 제품·문서 같은 규제 항목은 저장 시 CCR 자동 발의 → 영향평가 → 승인 → 이행 완료, 전·후 비교. 24단계.</p>
-      <span class="meta">2026-09 · 현행 화면 기준</span>
+      <div class="thumb"><img src="/tours/thumbs/change-control.jpg" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="dur">1:38</span></div>
+      <div class="cap"><span class="code">EDIT-001</span><h2>입력값 수정과 변경관리</h2></div>
     </a>
   </div>
 </div>
