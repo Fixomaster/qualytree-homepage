@@ -122,6 +122,20 @@ body.video .lockcard h3{font-size:44px}body.video .lockcard p{font-size:22px}
 .toggle input{accent-color:var(--forest)}
 
 /* ---------- 스텝 레일 ---------- */
+/* compact: 한 화면에 영상 + 파트 한 줄 */
+body.compact .rail,body.compact .foot{display:none}
+body.compact .wrap{padding-block:12px 12px}
+body.compact .top{margin-bottom:10px}
+body.compact .stagebox{max-width:calc((100vh - 216px) * 16 / 9);margin:0 auto}
+body.compact .controls{padding-top:10px}
+.chips{display:none}
+body.compact .chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px;padding:0 4px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink-2);cursor:pointer;white-space:nowrap;transition:background .15s,color .15s}
+.chip .pc{font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--amber);letter-spacing:.06em}
+.chip.on{background:var(--forest);border-color:var(--forest);color:#fff}
+.chip.on .pc{color:#f2c46b}
+.chip.locked{opacity:.6;cursor:default;border-style:dashed}
+.chip .sep{color:var(--ink-3);font-size:12px}
 .rail{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
 .rail .parts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
 .part.locked{opacity:.75;background:transparent;border-style:dashed}.plock{margin:6px 0 4px;font-size:12.5px;color:var(--ink-3)}
@@ -240,6 +254,8 @@ body.video .vignette{background:linear-gradient(to top,rgba(5,14,10,.9) 0%,rgba(
     <label class="toggle"><input type="checkbox" id="chkLoop"> 반복 재생</label>
     <button class="btn" id="btnFull">⛶ 전체화면</button>
   </div>
+
+  <div class="chips" id="chips"></div>
 
   <nav class="rail" aria-label="단계 목록"><div class="parts" id="parts"></div></nav>
 
@@ -416,6 +432,7 @@ const TOUR = {
    }
   }
  ],
+ "compact": true,
  "total": 24,
  "preview": 6
 };
@@ -426,6 +443,8 @@ const TOUR = {
   const params=new URLSearchParams(location.search);
   const VIDEO = params.get('video')==='1';
   if(VIDEO) document.body.classList.add('video');
+  const COMPACT = !!TOUR.compact || params.get('compact')==='1';
+  if(COMPACT && !VIDEO) document.body.classList.add('compact');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const PREVIEW = TOUR.preview || Math.max(0, parseInt(params.get('preview')||'0',10)) || 0;
@@ -449,6 +468,14 @@ const TOUR = {
     partsEl.appendChild(box);
   });
   partsEl.addEventListener('click',e=>{const li=e.target.closest('li[data-i]');if(li){pause();go(+li.dataset.i)}});
+  const chipsEl=$('#chips');
+  TOUR.parts.forEach(p=>{
+    const first=steps.findIndex(s=>s.part===p.code);
+    const c=document.createElement('button'); c.type='button'; c.className='chip'+(first<0?' locked':''); c.dataset.part=p.code;
+    c.innerHTML=`<span class="pc">${p.code}</span><span>${p.name}</span>${first<0?'<span>🔒</span>':''}`;
+    if(first>=0){ c.dataset.i=first; c.addEventListener('click',()=>{pause();go(first)}); }
+    chipsEl.appendChild(c);
+  });
 
   function loadImg(src){
     return new Promise(res=>{
@@ -512,6 +539,7 @@ const TOUR = {
     /* 자막 */
     const part=TOUR.parts.find(p=>p.code===s.part)||{};
     $('#parttag').innerHTML=`<span class="code">${s.part}</span><span>${part.name||''}</span>`;
+    document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.part===s.part));
     $('#capNum').textContent=`STEP ${String(i+1).padStart(2,'0')} / ${N}`;
     $('#capTitle').innerHTML=s.title; $('#capBody').innerHTML=s.body;
     const tip=$('#capTip'); tip.hidden=!s.tip; tip.textContent=s.tip||'';
