@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Qualytree 도입 신청(가입) 방법 — 3단계 화면을 따라가며 입력 항목과 데이터 흐름을 안내하는 가이드 투어">
-<meta property="og:title" content="Qualytree 가입 안내 투어">
+<meta name="description" content="수입검사(IQC)부터 출하검사(LAI)까지 측정값을 입력하고 합격·부적합 판정과 NCR·CAPA 자동 발의로 이어지는 흐름을 실제 화면으로 안내합니다.">
+<meta property="og:title" content="Qualytree 검사 단계 입력 투어">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<title>Qualytree 가입 안내 투어</title>
+<title>Qualytree 검사 단계 입력 투어</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Noto+Serif+KR:wght@600;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
 <style>
 /* =====================================================================
@@ -99,6 +99,16 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:"Noto Sans K
 .titlecard .steps span{border:1px solid rgba(255,255,255,.25);padding:6px 12px;border-radius:999px;font-size:13px;color:#e8ece9}
 .titlecard .steps span b{color:var(--amber);margin-right:6px;font-family:"JetBrains Mono",monospace;font-weight:500}
 
+/* 미리보기 잠금 카드 (?preview=N) */
+.lockcard{position:absolute;inset:0;z-index:7;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6% 8%;color:var(--stage-text);background:rgba(6,18,12,.9);opacity:0;pointer-events:none;transition:opacity .6s ease}
+.lockcard.show{opacity:1;pointer-events:auto}
+.lockcard .ic{width:56px;height:56px;border-radius:50%;border:1.5px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:22px}
+.lockcard h3{margin:0 0 10px;font-family:"Noto Serif KR",Fraunces,serif;font-weight:700;font-size:clamp(20px,3vw,34px);line-height:1.25;text-wrap:balance}
+.lockcard p{margin:0;max-width:46ch;font-size:clamp(13px,1.4vw,16px);color:#dfe5e0}
+.lockcard .acts{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:22px}
+.lockcard a{text-decoration:none;font-size:14px;padding:10px 18px;border-radius:9px;border:1px solid rgba(255,255,255,.35);color:#fff}
+.lockcard a.pri{background:var(--amber);border-color:var(--amber);color:#1a1409;font-weight:700}
+body.video .lockcard h3{font-size:44px}body.video .lockcard p{font-size:22px}
 /* ---------- 컨트롤 ---------- */
 .controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 4px 0}
 .btn{appearance:none;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:8px;padding:8px 12px;font:inherit;font-size:13.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;line-height:1}
@@ -114,6 +124,7 @@ body{margin:0;background:var(--ground);color:var(--ink);font-family:"Noto Sans K
 /* ---------- 스텝 레일 ---------- */
 .rail{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
 .rail .parts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.part.locked{opacity:.75;background:transparent;border-style:dashed}.plock{margin:6px 0 4px;font-size:12.5px;color:var(--ink-3)}
 .part{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 12px 8px;min-width:0}
 .part .ph{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}
 .part .ph .pc{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--amber);letter-spacing:.06em}
@@ -167,11 +178,10 @@ body.video .vignette{background:linear-gradient(to top,rgba(5,14,10,.9) 0%,rgba(
 :fullscreen .stage{aspect-ratio:auto;height:100%}
 </style>
 <style>
+.flow{display:none!important}.caption{grid-template-columns:1fr}
+</style><style>
 .backlink{font-size:12.5px;color:var(--ink-3);text-decoration:none;display:inline-block;margin-bottom:6px}
 .backlink:hover{color:var(--forest)}
-/* 고객 공개용: 데이터 흐름(내부 저장 구조) 패널 비표시 */
-.flow{display:none!important}
-.caption{grid-template-columns:1fr}
 </style>
 </head>
 <body>
@@ -181,10 +191,10 @@ body.video .vignette{background:linear-gradient(to top,rgba(5,14,10,.9) 0%,rgba(
   <header class="top">
     <div>
       <a class="backlink" href="/tours/">← 가이드 목록</a><br>
-      <div class="eyebrow">Qualytree Platform · Guided Tour · ONB-000</div>
-      <div class="brand"><div class="name">Qualytree<span>가입 안내</span></div></div>
+      <div class="eyebrow">Qualytree Platform · Guided Tour · OPS-001</div>
+      <div class="brand"><div class="name">Qualytree<span>검사 입력</span></div></div>
     </div>
-    <div class="meta">도입 신청 3단계 → 운영팀 승인 → 첫 로그인까지<br>화면 캡처 기준: qualytree-app main 24d3de4 · 2026-09-18</div>
+    <div class="meta">작업지시 → 검사 입력 → 판정 → NCR<br>화면 캡처 기준: qualytree-app main 24d3de4 · 2026-09-18</div>
   </header>
 
   <div class="stagebox" id="stagebox">
@@ -205,6 +215,12 @@ body.video .vignette{background:linear-gradient(to top,rgba(5,14,10,.9) 0%,rgba(
           <div class="h"><span>데이터 흐름</span><span id="flowCode" class="mono"></span></div>
           <div id="flowRows"></div>
         </div>
+      </div>
+      <div class="lockcard" id="lockcard">
+        <div class="ic">🔒</div>
+        <h3>여기부터는 가입 고객에게 제공됩니다</h3>
+        <p id="lockBody">나머지 단계는 가입·승인 후 플랫폼의 ‘사용 안내’ 메뉴에서 전체를 볼 수 있습니다.</p>
+        <div class="acts"><a class="pri" href="/signup">회사 계정 신청</a><a href="/login">로그인</a><a href="/tours/">다른 안내 보기</a></div>
       </div>
       <div class="titlecard" id="titlecard">
         <div class="kicker" id="tcKicker"></div>
@@ -230,8 +246,8 @@ body.video .vignette{background:linear-gradient(to top,rgba(5,14,10,.9) 0%,rgba(
   <section class="foot">
     <div>
       <h3>이 투어에 대하여</h3>
-      <p>실제 도입 신청 화면을 캡처해 단계별로 확대·이동하며 설명합니다. 각 항목이 <b>어디에 저장되고 어느 화면·문서로 이어지는지</b>는 가입 후 전체 안내에서 볼 수 있습니다.</p>
-      <p>예시 회사 「(주)한빛메디칼」은 설명용 가상 데이터입니다.</p>
+      <p>실제 화면을 캡처해 단계별로 확대·이동하며 설명합니다. 각 항목이 <b>어디에 저장되고 어느 화면·문서로 이어지는지</b>는 가입 후 전체 안내에서 볼 수 있습니다.</p>
+      <p>화면의 회사·제품·수치는 설명용 데모 데이터입니다.</p>
     </div>
     <div>
       <h3>조작 방법</h3>
@@ -253,105 +269,151 @@ body.video .vignette{background:linear-gradient(to top,rgba(5,14,10,.9) 0%,rgba(
      card   : (선택) 타이틀 카드 { kicker, title, body, steps[] } — 이미지 위에 덮어 표시
    ===================================================================== */
 const TOUR = {
-  id: "ONB-000", title: "Qualytree 가입 안내", pace: 3,   // 단계당 기본 머무는 시간(초)
-  parts: [
-    { code:"P0", name:"소개" },
-    { code:"P1", name:"시작하기" },
-    { code:"P2", name:"1단계 · 회사 정보" },
-    { code:"P3", name:"2단계 · 요금제·관리자" },
-    { code:"P4", name:"3단계 · 결제·접수" },
-    { code:"P5", name:"접수 이후" },
-  ],
-  steps: [
-    { part:"P0", img:"img/00_login.jpg", rect:[0,0,1,1], dur:5, title:"Qualytree 가입 안내", body:"",
-      card:{ kicker:"Qualytree Platform · 가입 안내", title:"도입 신청부터 첫 로그인까지, <span class='lat'>3 Steps</span>",
-             body:"RA 교육을 받지 않은 담당자도 화면 안내만 따라가면 됩니다. 어떤 항목을 왜 입력하는지, 그 값이 이후 어디에 저장되고 어느 화면으로 연결되는지를 함께 보여드립니다.",
-             steps:["시작하기","1단계 회사 정보 · 사업자 확인","2단계 요금제 · 관리자 · 동의","3단계 결제 · 접수","접수 이후"] } },
-
-    { part:"P1", img:"img/00_login.jpg", rect:[0,0,1,1], title:"로그인 화면에서 출발합니다",
-      body:"www.qualy-tree.com/login 에 접속하면 로그인 화면이 열립니다. 왼쪽이 로그인 영역, 오른쪽은 플랫폼 소개입니다. 아직 회사 계정이 없다면 로그인 대신 ‘회사 계정 신청’으로 들어갑니다. 계정 없이 둘러보고 싶을 때는 맨 아래 ‘계정 없이 데모로 둘러보기’를 누르면 됩니다.",
-      flow:{ code:"#ENT-001", in:"—", save:"—", link:"회사 계정 신청 → 도입 신청 화면 (/signup)" } },
-    { part:"P1", img:"img/00_login.jpg", rect:[0.07,0.68,0.36,0.09], title:"「회사 계정 신청」을 누릅니다",
-      body:"로그인 버튼 아래 ‘계정이 없으신가요? 회사 계정 신청’ 링크입니다. Qualytree는 개인이 아니라 회사(사업자) 단위로 가입하므로, 첫 신청자가 그 회사의 관리자가 됩니다. 이미 가입된 회사의 직원은 ‘작업자’ 탭의 ‘사업자번호로 직원 가입 신청’을 이용합니다.",
-      tip:"한 회사에 한 번만 신청합니다. 이후 직원 계정은 관리자가 발급합니다.",
-      flow:{ code:"/signup", in:"클릭", save:"—", link:"도입 신청 1단계 ‘회사 정보’로 이동" } },
-
-    { part:"P2", img:"img/01_step1_empty.jpg", rect:[0.36,0.12,0.28,0.09], title:"도입 신청은 3단계입니다",
-      body:"1단계 회사 정보 → 2단계 요금제·관리자 → 3단계 결제. 상단 표시기에서 현재 위치를 확인할 수 있고, ‘이전’으로 돌아와도 입력값은 그대로 남습니다. 제출 전까지는 서버에 아무것도 저장되지 않습니다.",
-      flow:{ code:"#ONB-000", in:"—", save:"화면 내 임시 보관", link:"3단계 ‘신청 접수’ 시 한 번에 signup_requests 로 저장" } },
-    { part:"P2", img:"img/02_step1_verify_filled.jpg", rect:[0.30,0.20,0.39,0.33], title:"1. 사업자 확인 — 사업자등록증대로 입력",
-      body:"회사명(상호)·사업자등록번호·대표자명·개업연월일 네 가지를 사업자등록증에 적힌 그대로 입력합니다. 번호와 날짜는 숫자만 쳐도 자동으로 하이픈이 붙습니다. 이 네 값이 국세청 등록 정보와 대조되므로 약칭이나 다른 날짜(등록일·발급일)를 쓰면 확인에 실패합니다.",
-      tip:"공동대표는 그중 1인만 입력합니다. 개업연월일은 사업자등록증의 ‘개업연월일’ 항목입니다.",
-      flow:{ code:"company_name · business_number · representative", in:"상호 · 10자리 번호 · 대표자 · 개업일", save:"signup_requests (3개 컬럼) — 개업일은 확인용", link:"국세청 진위확인 API → 승인 후 회사 마스터(테넌트명) · 자동 문서 회사명" } },
-    { part:"P2", img:"img/02_step1_verify_filled.jpg", rect:[0.30,0.52,0.39,0.31], title:"확인 전에는 아래 항목이 잠겨 있습니다",
-      body:"‘2. 회사 정보’ 영역은 사업자 확인이 끝나기 전까지 회색으로 잠겨 있어 입력할 수 없습니다. 실제 영업 중인 의료기기 사업자만 가입할 수 있도록 순서를 강제한 것입니다.",
-      flow:{ code:"bizLocked", in:"—", save:"—", link:"사업자 확인 완료 시 자동 해제" } },
-    { part:"P2", img:"img/03_step1_verified.jpg", rect:[0.31,0.455,0.37,0.065], title:"「사업자 확인」 → 확인 완료 ✓",
-      body:"버튼을 누르면 국세청에 조회해 ‘확인되었습니다 · 계속사업자’처럼 결과를 보여주고 버튼이 초록색 ‘확인 완료’로 바뀝니다. 휴업·폐업 상태이거나 정보가 다르면 빨간 안내와 함께 어떤 값을 보냈는지 알려주므로 그 값만 고쳐 다시 누르면 됩니다.",
-      tip:"확인 서비스가 준비 중이면 ‘운영팀이 사업자등록증으로 직접 확인합니다’ 안내 후 그대로 진행됩니다.",
-      flow:{ code:"POST /api/verify-business", in:"버튼 클릭", save:"확인 결과 상태 (화면)", link:"국세청 사업자등록정보 진위확인 → 통과 시 2. 회사 정보 입력 열림" } },
-    { part:"P2", img:"img/04_step1_filled.jpg", rect:[0.30,0.555,0.39,0.145], title:"2. 회사 정보 — 사업 형태와 업종",
-      body:"사업 형태(제조 / 수입 / 제조+수입 / 위탁제조 OEM·ODM / 유통·판매 / 기타)와 업종(의료기기 기구·기계, 의료용품, 체외진단, 치과재료, SaMD, 재생의료 등)을 고릅니다. 사업 형태가 ‘수입’이면 다음 단계에서 수입업체 요금제가 자동 선택됩니다.",
-      flow:{ code:"industry (bizType | sector | items)", in:"드롭다운 2개", save:"signup_requests.industry 에 ‘형태 | 업종 | 품목’으로 합쳐 저장", link:"2단계 기본 요금제 자동 선택 · 온보딩 제품군 초기값" } },
-    { part:"P2", img:"img/04_step1_filled.jpg", rect:[0.30,0.69,0.39,0.14], title:"구체적 품목 · 직원 수 구간",
-      body:"품목은 ‘척추 고정용 임플란트, 골절 고정용 플레이트·스크류’처럼 실제 허가 품목명으로 적습니다. 온보딩에서 제품군과 적용 표준을 추천하는 근거가 됩니다. 직원 수 구간은 1~10 / 11~30 / 31~50 / 51명 이상 중 선택하며, 운영팀이 계정 수를 안내할 때 참고합니다.",
-      flow:{ code:"productItems · employee_count_band", in:"텍스트 · 드롭다운", save:"signup_requests.industry / employee_count_band", link:"온보딩 제품 등록 초기값 · 계정 수 안내" } },
-    { part:"P2", img:"img/05_step1_error.jpg", rect:[0.30,0.185,0.40,0.075], title:"빠진 항목이 있으면 넘어가지 않습니다",
-      body:"필수값을 비운 채 ‘다음’을 누르면 상단에 빨간 안내가 한 문장으로 뜹니다. 예: ‘사업자등록번호를 입력해주세요.’ 사업자 확인을 건너뛴 경우에도 ‘먼저 [사업자 확인]을 눌러…’라고 알려줍니다. 해당 칸만 채우고 다시 누르면 됩니다.",
-      flow:{ code:"validateStep1()", in:"‘다음’ 클릭", save:"—", link:"오류 안내 → 보완 후 재시도" } },
-    { part:"P2", img:"img/04_step1_filled.jpg", rect:[0.30,0.83,0.40,0.06], title:"‘다음 →’으로 2단계로",
-      body:"모두 채워졌으면 오른쪽 아래 ‘다음 →’을 누릅니다. 중단하려면 ‘로그인으로 돌아가기’를 누르면 되고, 이 경우 입력값은 저장되지 않습니다.",
-      flow:{ code:"step 1 → 2", in:"클릭", save:"—", link:"2단계 요금제·관리자 화면" } },
-
-    { part:"P3", img:"img/09_step2_consented.jpg", rect:[0.20,0.11,0.60,0.12], title:"1. 기본 요금제 — 제조업체 / 수입업체",
-      body:"기본 QMS + 인증 1개가 월 300만 원(VAT 별도)입니다. 제조업체 기본은 KGMP이며 ISO 13485가 무료로 포함되고, 수입업체 기본은 수입사 GMP입니다. 1단계에서 고른 사업 형태에 맞춰 자동 선택되며, 카드를 눌러 바꿀 수 있습니다.",
-      flow:{ code:"desired_plan", in:"카드 선택 (자동 제안)", save:"signup_requests.desired_plan = kgmp | kgmp_importer", link:"승인 시 인증 슬롯·청구 기준 · 대시보드 필수 문서 세트" } },
-    { part:"P3", img:"img/09_step2_consented.jpg", rect:[0.20,0.22,0.60,0.16], title:"2. 추가 인증 — 필요한 만큼 체크",
-      body:"FDA QMSR·EU MDR·MDSAP·ANVISA·PMDA·NMPA·TGA·Health Canada 등 진출 예정 시장의 인증을 고릅니다. 하나당 월 100만 원이 더해지고, 아래 요약 카드에 월 이용료가 즉시 합산됩니다. 예시에서는 FDA QMSR을 추가해 월 400만 원이 되었습니다.",
-      tip:"여러 인증을 고르면 온보딩에서 공통·차이 항목이 자동 식별됩니다(다중 규제 동시 매핑).",
-      flow:{ code:"desired_certifications[]", in:"체크박스", save:"signup_requests.desired_certifications = 기본 + ISO 13485 + 추가", link:"온보딩 규제 선택 초기값 · 월 이용료 산정" } },
-    { part:"P3", img:"img/09_step2_consented.jpg", rect:[0.20,0.37,0.60,0.10], title:"3. 컨설팅 — 관심 항목만 표시",
-      body:"초기 입력·구축 / 제품 성능테스트 / 인증심사 대비 세 가지 중 관심 있는 항목에 체크합니다. 비용은 제품·기간에 따라 다르므로 여기서 계약이 성립하지는 않고, 접수 후 담당자가 연락해 범위와 견적을 협의합니다.",
-      flow:{ code:"consultInterest[]", in:"체크박스", save:"동의 기록(consent record)에 함께 보관", link:"접수 후 담당자 연락 → 별도 견적" } },
-    { part:"P3", img:"img/09_step2_consented.jpg", rect:[0.20,0.475,0.60,0.105], title:"4. 관리자 정보 — 이름 · 연락처 · 이메일",
-      body:"세 항목 모두 필수입니다. 관리자 이메일이 곧 로그인 ID이며, 승인 안내·임시 비밀번호·청구서·보안 알림이 이 주소로 갑니다. 실제 업무용 메일을 정확히 적어야 합니다.",
-      tip:"계정 공유는 허용되지 않습니다(전자기록 귀속 요건). 직원 계정은 승인 후 관리자가 따로 발급합니다.",
-      flow:{ code:"admin_name / phone / email", in:"텍스트 · 전화 · 이메일(형식 검사)", save:"signup_requests.admin_*", link:"승인 시 관리자 계정 생성 · 승인 메일 수신처" } },
-    { part:"P3", img:"img/09_step2_consented.jpg", rect:[0.20,0.595,0.60,0.21], title:"5. 약관 및 동의 — 필수 7개",
-      body:"서비스 이용약관, 의료기기 규제 책임 안내(부속서 R), 요금·결제·환불, 데이터 관리·보관·폐기, 대리권한, 개인정보, 만 14세 이상 — 7개 필수 항목에 모두 동의해야 결제 단계로 넘어갑니다. ‘전체 동의’를 누르면 선택 항목까지 한 번에 체크됩니다.",
-      flow:{ code:"consents{A1,A2,A3,A5,A4,B1,B4}", in:"체크박스 (전체 동의 가능)", save:"동의 버전 v2026.09 + 일시 → 신청 기록과 함께 보관", link:"필수 미동의 시 ‘결제로’ 비활성" } },
-    { part:"P3", img:"img/08_step2_consent_open.jpg", rect:[0.20,0.615,0.60,0.11], title:"‘내용 보기’로 요약본을 펼쳐 읽을 수 있습니다",
-      body:"각 항목 오른쪽 ‘내용 보기’를 누르면 요약본이 펼쳐집니다. 예시는 부속서 R — 인허가·품질시스템의 법적 책임은 고객사에 있고, AI가 만든 문서는 초안이며 자격자의 검토·승인이 필요하다는 내용입니다. 심사 대응과 직결되므로 품질책임자가 직접 확인해 주세요.",
-      flow:{ code:"openConsent", in:"내용 보기 클릭", save:"—", link:"약관 전문은 승인 메일·관리자 화면에서 재확인" } },
-    { part:"P3", img:"img/09_step2_consented.jpg", rect:[0.20,0.80,0.60,0.145], title:"선택 동의 3개 · ‘결제로 →’",
-      body:"규제 소식 수신, 익명화 벤치마크 데이터 활용, 도입 사례·레퍼런스 활용은 선택이며 동의하지 않아도 이용에 제한이 없습니다. 필수 항목이 모두 체크되면 ‘결제로 →’ 버튼이 활성화됩니다.",
-      flow:{ code:"consents{C1,C2,C3}", in:"체크박스 (선택)", save:"동의 기록", link:"3단계 결제 화면" } },
-
-    { part:"P4", img:"img/10_step3_payment.jpg", rect:[0.30,0.28,0.40,0.24], title:"3. 결제 — 신청 내용 요약 확인",
-      body:"요금제, 추가 인증, 컨설팅 관심 항목, 결제 주기(월납), 월 이용료가 한눈에 정리됩니다. 예시: 제조업체 기본 + FDA QMSR = 월 4,000,000원(VAT 별도). 수정할 것이 있으면 ‘← 이전’으로 돌아가면 됩니다.",
-      flow:{ code:"quoteAmount", in:"—", save:"—", link:"청구 기준 금액" } },
-    { part:"P4", img:"img/10_step3_payment.jpg", rect:[0.30,0.52,0.40,0.25], title:"결제 수단 — 카드 정기결제 / 계좌이체",
-      body:"카드를 등록하면 매월 자동 결제되고 결제 즉시 서비스가 활성화됩니다. 계좌이체는 전용 가상계좌를 발급하고 입금 확인 후 시작됩니다. 결제 모듈이 아직 연결되지 않은 기간에는 결제 없이 ‘신청 접수’로 진행되며, 운영팀 승인 후 활성화됩니다.",
-      tip:"베타 기간에는 결제 없이 접수 → 승인 방식으로 운영됩니다.",
-      flow:{ code:"paymentMethod", in:"탭 선택", save:"결제 메타 (method)", link:"PortOne 빌링키/가상계좌 → 자동 활성화 (연결 후)" } },
-    { part:"P4", img:"img/10_step3_payment.jpg", rect:[0.30,0.77,0.40,0.09], title:"‘신청 접수’ — 여기서 서버에 저장됩니다",
-      body:"버튼을 누르는 순간 1·2·3단계 입력값이 한 건의 신청 레코드로 저장되고 운영팀 검토 대기열에 올라갑니다. 처리 중에는 ‘접수 중…’으로 바뀌어 중복 제출이 막히고, 오류가 있으면 이동하지 않고 상단에 사유가 표시됩니다.",
-      flow:{ code:"submit_signup_request()", in:"클릭", save:"signup_requests (status: pending) + 동의 기록", link:"운영자 콘솔 대기열 → 승인 / 반려" } },
-
-    { part:"P5", img:"img/11_success.jpg", rect:[0.30,0.16,0.40,0.68], title:"접수 완료 — 회사명과 메일을 확인하세요",
-      body:"‘신청이 접수되었습니다’ 화면에 회사명과 관리자 메일이 다시 표시됩니다. 여기까지가 고객이 직접 하는 일의 전부입니다. 오타가 있다면 contact@qualy-tree.com 으로 알려주세요.",
-      flow:{ code:"/signup/success", in:"—", save:"—", link:"운영팀 검토 → 1~2영업일 내 승인 메일" } },
-    { part:"P5", img:"img/11_success.jpg", rect:[0.33,0.53,0.34,0.18], title:"승인 후: 임시 비밀번호로 첫 로그인",
-      body:"운영팀 검토를 거쳐 1~2영업일 내 승인 안내와 임시 비밀번호가 관리자 메일로 발송됩니다. 그 정보로 로그인 화면(회사관리자·운영자 탭)에서 첫 로그인을 하면, 회사 정보와 선택한 인증이 이미 반영된 상태로 온보딩이 시작됩니다.",
-      tip:"첫 로그인 후 비밀번호를 바로 바꾸고, 필요한 직원 계정을 발급하세요.",
-      flow:{ code:"process_signup_request()", in:"운영팀 승인", save:"companies · company_members", link:"승인 메일 → 로그인 → 온보딩 5단계 (#ONB-001~005)" } },
-    { part:"P5", img:"img/00_login.jpg", rect:[0,0,1,1], dur:5, title:"정리", body:"",
-      card:{ kicker:"정리", title:"사업자 확인 한 번, 신청 한 번 — 그 다음은 <span class='lat'>Quality Tree</span>",
-             body:"회사 정보와 필요한 인증을 한 번만 입력하면 승인과 동시에 회사 계정·관리자 계정·규제 매핑 기본값이 만들어집니다. 다음 투어에서는 온보딩 5단계에서 공정과 제품을 입력하는 방법을 안내합니다.",
-             steps:["문의 contact@qualy-tree.com","다음 투어 · 온보딩 5단계 (#ONB-001)"] } },
-  ]
+ "id": "OPS-001",
+ "title": "검사 단계 입력",
+ "pace": 3,
+ "parts": [
+  {
+   "code": "P0",
+   "name": "소개"
+  },
+  {
+   "code": "P1",
+   "name": "검사 관리 화면"
+  },
+  {
+   "code": "P2",
+   "name": "검사값 입력"
+  },
+  {
+   "code": "P3",
+   "name": "판정과 NCR"
+  },
+  {
+   "code": "P4",
+   "name": "정리"
+  }
+ ],
+ "steps": [
+  {
+   "part": "P0",
+   "img": "img/01_inspection_home.jpg",
+   "rect": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "title": "검사 단계 입력과 부적합(NCR) 처리",
+   "body": "",
+   "dur": 5,
+   "card": {
+    "kicker": "Qualytree Platform · 사용 안내",
+    "title": "측정값을 넣으면 판정·NCR·CAPA까지 <span class='lat'>자동으로 이어집니다</span>",
+    "body": "수입검사(IQC)부터 출하검사(LAI)까지, 검사원이 화면의 빈칸에 측정값만 입력하면 규격과 비교해 합격·부적합이 즉시 표시되고, 검사관 서명과 동시에 부적합 보고서(NCR)가 발행됩니다. 어떤 값이 어디에 저장되고 어느 화면으로 연결되는지 함께 보여드립니다.",
+    "steps": [
+     "검사 관리 화면 — 최종검사 대기 목록",
+     "작업지시별 4단계 검사 계획(IQC·FAI·IPI·LAI)",
+     "샘플별 측정값 입력과 자동 합격·부적합 표시",
+     "검사관 서명 → NCR 자동 발의 → CAPA 연결"
+    ]
+   }
+  },
+  {
+   "part": "P1",
+   "img": "img/01_inspection_home.jpg",
+   "rect": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "title": "검사 관리 화면에서 출발합니다",
+   "body": "왼쪽 메뉴 ‘공정·최종 검사’(품질·검사 영역)를 누르면 검사 관리 화면이 열립니다. 상단 배너의 업무 흐름은 생산 완료 → 최종검사 대기 → 검사 진행 → 판정 → 기록 보관 → 출하 승인 순서로, 이 화면이 담당하는 범위를 보여줍니다.",
+   "flow": {
+    "code": "/inspection",
+    "in": "—",
+    "save": "qualytree.inspections (검사 기록 목록)",
+    "link": "생산(작업지시) → 검사 기록 → NCR·부적합 관리 → 출하 승인"
+   }
+  },
+  {
+   "part": "P1",
+   "img": "img/01_inspection_home.jpg",
+   "rect": [
+    0.218,
+    0.2825,
+    0.7578,
+    0.0396
+   ],
+   "title": "위쪽 다섯 칸은 검사 현황 요약입니다",
+   "body": "전체 검사·합격·불합격·검사 중 건수와 합격률이 자동 집계됩니다. 합격률은 95% 이상이면 초록, 80% 미만이면 빨강으로 바뀌어 한눈에 상태를 알 수 있습니다. 아직 검사 기록이 없어 모두 0으로 표시됩니다.",
+   "flow": {
+    "code": "passRate = 합격 ÷ 전체",
+    "in": "—",
+    "save": "계산값 (저장하지 않음)",
+    "link": "‘현황 분석’ 탭의 유형별·월별 추이, 품질 대시보드 검사 카드"
+   }
+  },
+  {
+   "part": "P1",
+   "img": "img/01_inspection_home.jpg",
+   "rect": [
+    0.2078,
+    0.3876,
+    0.7781,
+    0.2778
+   ],
+   "title": "최종검사 대기 — 생산이 끝난 작업지시",
+   "body": "생산현황에서 상태가 ‘완료’가 된 작업지시 중 아직 최종검사 기록이 없는 것이 초록 카드로 자동 나열됩니다. 제품명·작업지시 번호·수량·완료일이 함께 표시되므로 어떤 로트를 검사할 차례인지 찾을 필요가 없습니다.",
+   "tip": "검사 기록이 저장되면 그 작업지시는 대기 목록에서 자동으로 사라집니다.",
+   "flow": {
+    "code": "waitingWos = qms_mfg_wo.status==='완료' && 검사 기록 없음",
+    "in": "—",
+    "save": "—",
+    "link": "카드 클릭 → 최종검사 진행 창"
+   }
+  },
+  {
+   "part": "P1",
+   "img": "img/01_inspection_home.jpg",
+   "rect": [
+    0.8907,
+    0.428,
+    0.0851,
+    0.0475
+   ],
+   "title": "「검사 시작 →」을 누릅니다",
+   "body": "카드 오른쪽의 ‘검사 시작 →’을 누르면 해당 작업지시의 제품명·작업지시 번호·검사일·검사자가 자동으로 채워진 최종검사 창이 열립니다. 이 값들은 작업지시에서 가져오므로 직접 고칠 수 없고, 검사원은 결과만 입력합니다.",
+   "flow": {
+    "code": "openFinal(wo)",
+    "in": "클릭",
+    "save": "—",
+    "link": "제품의 검사 기준서(제품 개발 화면에서 작성) → 검사 항목 자동 생성"
+   }
+  },
+  {
+   "part": "P1",
+   "img": "img/02_fqc_form.jpg",
+   "rect": [
+    0.232,
+    0.1971,
+    0.5359,
+    0.236
+   ],
+   "title": "검사 항목은 기준서에서 자동으로 옵니다",
+   "body": "제품에 검사 기준서가 등록되어 있으면 그 항목이, 없으면 기본 최종검사 5항목(외관·치수/규격·기능 동작·표시사항·포장 상태)이 자동으로 나열됩니다. 각 줄에 측정값이나 확인 내용을 적고 오른쪽에서 합격·조건부·불합격을 고릅니다.",
+   "flow": {
+    "code": "checkItems[{name, spec, result, ok}]",
+    "in": "측정값/기준치 + 합격·조건부·불합격 선택",
+    "save": "qualytree.inspections[].checkItems",
+    "link": "최종 판정 자동 산출 · 검사 기준서(제품 레코드) 참조"
+   }
+  }
+ ],
+ "total": 25,
+ "preview": 6
 };
-
 /* ===================================================================== 엔진 */
 (function(){
   const $ = s => document.querySelector(s);
@@ -361,7 +423,11 @@ const TOUR = {
   if(VIDEO) document.body.classList.add('video');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const steps=TOUR.steps, N=steps.length;
+  const PREVIEW = TOUR.preview || Math.max(0, parseInt(params.get('preview')||'0',10)) || 0;
+  const ALL = TOUR.total || TOUR.steps.length;
+  const steps = PREVIEW ? TOUR.steps.slice(0, Math.min(PREVIEW, ALL)) : TOUR.steps;
+  const N=steps.length;
+  if(PREVIEW){ const lb=document.getElementById('lockBody'); if(lb) lb.textContent=`전체 ${ALL}단계 중 ${N}단계를 미리 보셨습니다. 나머지는 가입·승인 후 플랫폼의 ‘사용 안내’ 메뉴에서 볼 수 있습니다.`; }
   let cur=-1, active=0, playing=false, timer=null, raf=null, stepStart=0, stepDur=0, loop=false;
   const imgCache={};
 
@@ -372,7 +438,9 @@ const TOUR = {
   TOUR.parts.forEach(p=>{
     const box=document.createElement('div');box.className='part';
     const list=steps.map((s,i)=>({s,i})).filter(x=>x.s.part===p.code);
-    box.innerHTML=`<div class="ph"><span class="pc">${p.code}</span><span class="pt">${p.name}</span></div><ol>${list.map(x=>`<li data-i="${x.i}"><span class="n">${String(x.i+1).padStart(2,'0')}</span><span>${x.s.title}</span></li>`).join('')}</ol>`;
+    const lockNote = (PREVIEW && !list.length) ? `<p class="plock">🔒 가입 후 제공</p>` : '';
+    box.innerHTML=`<div class="ph"><span class="pc">${p.code}</span><span class="pt">${p.name}</span></div><ol>${list.map(x=>`<li data-i="${x.i}"><span class="n">${String(x.i+1).padStart(2,'0')}</span><span>${x.s.title}</span></li>`).join('')}</ol>${lockNote}`;
+    if(PREVIEW && !list.length) box.classList.add('locked');
     partsEl.appendChild(box);
   });
   partsEl.addEventListener('click',e=>{const li=e.target.closest('li[data-i]');if(li){pause();go(+li.dataset.i)}});
@@ -418,6 +486,7 @@ const TOUR = {
   function durOf(s){ if(s.dur) return s.dur; return TOUR.pace||3; }   // 데모용: 단계당 기본 3초 (TOUR.pace 로 조정, 단계별 dur 우선)
 
   async function go(i, opts={}){
+    if(PREVIEW){ document.getElementById('lockcard').classList.remove('show'); }
     if(i<0) i=0; if(i>=N){ if(loop||VIDEO&&params.get('loop')==='1'){i=0} else { pause(); markDone(); return; } }
     const s=steps[i]; const prev=cur; cur=i;
     const im=await loadImg(s.img);
@@ -470,7 +539,7 @@ const TOUR = {
   }
   function play(){ playing=true; $('#btnPlay').textContent='❚❚ 일시정지'; if(cur>=N-1&&!loop) cur=-1; if(cur<0) go(0); else schedule(); }
   function pause(){ playing=false; clearTimeout(timer); cancelAnimationFrame(raf); $('#btnPlay').textContent='▶ 재생'; }
-  function markDone(){ window.__tourDone=true; document.body.dataset.done='1'; }
+  function markDone(){ window.__tourDone=true; document.body.dataset.done='1'; if(PREVIEW){ document.getElementById('lockcard').classList.add('show'); } }
 
   $('#btnPlay').onclick=()=>playing?pause():play();
   stage.addEventListener('click',e=>{ if(e.target.closest('a,button')) return; playing?pause():play(); });

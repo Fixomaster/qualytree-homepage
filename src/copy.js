@@ -14,7 +14,7 @@ export const COPY = {
       cards: [
         { tag: "GUIDED DEMO", t: "Walk through it with us", s: "A 30-minute online session on your own product example — approval path, quality records, audit view. Ask anything.", b: "Request a demo", kind: "demo" },
         { tag: "TRIAL ACCOUNT", t: "Try it with your own data", s: "A time-limited trial workspace where your team enters a real process or document and sees how it flows. Data can be deleted or kept on sign-up.", b: "Request a trial account", kind: "trial", soon: true },
-        { tag: "GUIDED TOUR", t: "Watch the sign-up walkthrough", s: "A 98-second guided tour of the real sign-up screens — business verification, plan and admin, consent, submission — showing what each field is for. Onboarding, document, inspection and change-control guides continue inside the platform after sign-up. Korean narration.", b: "Open the tour (1 min 38 s)", kind: "tour", href: "/tours/signup/" },
+        { tag: "GUIDED TOUR", t: "Watch the sign-up walkthrough", s: "A 98-second guided tour of the real sign-up screens — business verification, plan and admin, consent, submission — showing what each field is for. Four more guides (onboarding, documents, inspection, change control) can be previewed; full versions unlock after sign-up. Korean narration.", b: "Open the guides (5 tours)", kind: "tour", href: "/tours/" },
       ],
       note: "Self-serve sandbox in preparation — until then, demos and trial accounts are arranged by the team.",
     },
@@ -188,7 +188,7 @@ export const COPY = {
       cards: [
         { tag: "GUIDED DEMO", t: "함께 둘러보는 데모", s: "귀사 제품을 예로 30분 온라인 시연 — 인허가 경로, 품질기록, 심사 화면까지. 궁금한 것은 무엇이든 물어보세요.", b: "데모 신청", kind: "demo" },
         { tag: "TRIAL ACCOUNT", t: "우리 데이터로 직접 체험", s: "기간 한정 체험 공간에서 실제 공정이나 문서를 하나 넣어 보고 어떻게 흘러가는지 확인합니다. 체험 데이터는 삭제하거나 가입 시 이어갈 수 있습니다.", b: "체험 계정 신청", kind: "trial", soon: true },
-        { tag: "GUIDED TOUR", t: "가입 화면을 미리 보기", s: "실제 화면을 따라가는 1분 38초 안내 — 사업자 확인, 요금제·관리자, 동의, 접수까지 어떤 항목을 왜 입력하는지 보여드립니다. 온보딩·문서·검사 안내는 가입 후 플랫폼 안에서 이어집니다.", b: "가입 안내 보기 (1분 38초)", kind: "tour", href: "/tours/signup/" },
+        { tag: "GUIDED TOUR", t: "가입 화면을 미리 보기", s: "실제 화면을 따라가는 1분 38초 안내 — 사업자 확인, 요금제·관리자, 동의, 접수까지 어떤 항목을 왜 입력하는지 보여드립니다. 온보딩·문서·검사·변경관리 네 편은 앞부분만 미리 보고, 전체는 가입 후 볼 수 있습니다.", b: "가이드 투어 보기 (5편)", kind: "tour", href: "/tours/" },
       ],
       note: "셀프 체험 환경은 준비 중입니다. 그 전까지 데모와 체험 계정은 운영팀이 직접 안내합니다.",
     },
