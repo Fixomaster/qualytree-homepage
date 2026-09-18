@@ -1,5 +1,17 @@
 {
   "rewrites": [
     { "source": "/((?!api/contact$|tours(?:/.*)?$).+)", "destination": "https://app.qualy-tree.com/$1" }
+  ],
+  "headers": [
+    {
+      "comment": "가이드 투어 페이지는 매번 최신본을 확인한다 (정적 HTML 갱신이 브라우저 캐시에 막히지 않도록)",
+      "source": "/tours/:path*",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
+    },
+    {
+      "comment": "투어 캡처 이미지는 파일명이 바뀔 때만 갱신되므로 하루 캐시",
+      "source": "/tours/:path*.:ext(jpg|jpeg|png|webp|svg)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }]
+    }
   ]
 }
