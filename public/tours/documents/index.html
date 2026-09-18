@@ -446,6 +446,7 @@ const TOUR = {
    }
   }
  ],
+ "appUrl": "/guides/documents",
  "en": {
   "title": "Quality documents — drafting to approval",
   "short": "Documents",
@@ -475,14 +476,14 @@ const TOUR = {
       aboutP2:'Company, product and figures on screen are demo data.',
       howH:'Controls', howKeys:'Plays automatically when opened. Click the screen or <span>Space</span> play/pause <span>&larr;</span><span>&rarr;</span> move <span>F</span> fullscreen <span>Home</span> restart',
       lockH:'The rest is available to customers', lockBody:'You have seen $M of $ALL steps. The full tour is in the <b>Guides</b> menu inside the platform after sign-up and approval.',
-      lockA:'Request an account', lockB:'Log in', lockC:'Other guides', chipLock:'After sign-up', toggle:'한국어' },
+      lockA:'Watch in full (log in)', lockA2:'Request an account', lockB:'Log in', lockC:'Other guides', chipLock:'After sign-up', toggle:'한국어' },
     ko: { prev:'← 이전', play:'▶ 재생', pause:'❚❚ 일시정지', next:'다음 →', loop:'반복 재생', full:'⛶ 전체화면',
       back:'← 가이드 목록', aboutH:'이 투어에 대하여',
       aboutP:'실제 화면을 캡처해 단계별로 확대·이동하며 설명합니다.',
       aboutP2:'화면의 회사·제품·수치는 설명용 데모 데이터입니다.',
       howH:'조작 방법', howKeys:'열리면 자동 재생됩니다. 화면 클릭 또는 <span>Space</span> 재생/일시정지 <span>&larr;</span><span>&rarr;</span> 단계 이동 <span>F</span> 전체화면 <span>Home</span> 처음으로',
       lockH:'여기부터는 가입 고객에게 제공됩니다', lockBody:'전체 $ALL단계 중 $M단계를 미리 보셨습니다. 나머지는 가입·승인 후 플랫폼의 ‘사용 안내’ 메뉴에서 볼 수 있습니다.',
-      lockA:'회사 계정 신청', lockB:'로그인', lockC:'다른 안내 보기', chipLock:'가입 후 제공', toggle:'ENGLISH' }
+      lockA:'로그인하고 전체 보기', lockA2:'회사 계정 신청', lockB:'로그인', lockC:'다른 안내 보기', chipLock:'가입 후 제공', toggle:'ENGLISH' }
   };
   let LANG = (function(){
     const q=params.get('lang'); if(q==='ko'||q==='en') return q;
@@ -651,7 +652,11 @@ const TOUR = {
     const h3=document.querySelector('.lockcard h3'); if(h3) h3.textContent=t('lockH');
     const lbody=$('#lockBody'); if(lbody) lbody.innerHTML=t('lockBody').replace('$ALL',ALL).replace('$M',N);
     const la=document.querySelectorAll('.lockcard .acts a');
-    if(la.length===3){ la[0].textContent=t('lockA'); la[1].textContent=t('lockB'); la[2].textContent=t('lockC'); }
+    if(la.length===3){
+      if(TOUR.appUrl){ la[0].textContent=t('lockA'); la[0].href=TOUR.appUrl; la[1].textContent=t('lockA2'); la[1].href='/signup'; }
+      else { la[0].textContent=t('lockA2'); la[1].textContent=t('lockB'); }
+      la[2].textContent=t('lockC');
+    }
     const fh=document.querySelectorAll('.foot h3');
     if(fh.length===2){ fh[0].textContent=t('aboutH'); fh[1].textContent=t('howH');
       const ps=fh[0].parentElement.querySelectorAll('p'); if(ps.length>=2){ ps[0].innerHTML=t('aboutP'); ps[1].innerHTML=t('aboutP2'); }
