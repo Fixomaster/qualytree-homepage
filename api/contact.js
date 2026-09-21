@@ -20,7 +20,7 @@ export default async function handler(req, res) {
 
   const key = process.env.RESEND_API_KEY;
   // 폴백 수신 주소: Resend 키가 없을 때 FormSubmit 릴레이로 전달 (최초 1회 수신자 활성화 필요)
-  const FALLBACK_TO = process.env.CONTACT_FALLBACK_TO || "mrjee75@gmail.com";
+  const FALLBACK_TO = process.env.CONTACT_FALLBACK_TO || TO;
 
   let body = req.body;
   if (typeof body === "string") { try { body = JSON.parse(body); } catch { body = {}; } }
