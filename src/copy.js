@@ -172,7 +172,7 @@ export const COPY = {
         ["Phone", "+82-10-3116-5997"],
         ["Email", "contact@qualy-tree.com"],
       ],
-      links: [],  // 이용약관·개인정보처리방침 페이지 게시 후 [["Terms of Service", "/terms"], ["Privacy Policy", "/privacy"]] 로 복구
+      links: [["Terms of Service", "/terms"], ["Refund Policy", "/refund-policy"], ["Privacy Policy", "/privacy"], ["Pricing", "/pricing"]],
     },
   },
 
@@ -346,7 +346,7 @@ export const COPY = {
         ["연락처", "010-3116-5997"],
         ["이메일", "contact@qualy-tree.com"],
       ],
-      links: [],  // 약관 페이지 게시 후 [["이용약관", "/terms"], ["개인정보처리방침", "/privacy"]] 로 복구
+      links: [["이용약관", "/terms"], ["환불정책", "/refund-policy"], ["개인정보처리방침", "/privacy"], ["요금제·서비스 안내", "/pricing"]],
     },
   },
 };
