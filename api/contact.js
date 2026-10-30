@@ -1,14 +1,14 @@
 // Vercel Serverless Function — 랜딩 페이지 문의 양식 접수 → 이메일 전달 (Resend)
 //
 // - 키는 Vercel 환경변수 RESEND_API_KEY 로만 보관. 발신 도메인(qualy-tree.com)은 Resend에 이미 검증되어 있음(DKIM).
-// - 수신: CONTACT_TO (기본 contact@qualy-tree.com). 회신은 문의자 이메일로 가도록 reply_to 설정.
+// - 수신: CONTACT_TO (기본 james1713@qualy-tree.com). 회신은 문의자 이메일로 가도록 reply_to 설정.
 // - 키가 없으면 { ok:false, error:'not_configured' } — 프론트는 직접 메일 안내로 폴백.
 //
 // 요청(POST): { company, name, email, phone, topic, message, lang }
 // 응답: { ok:true } | { ok:false, error, message }
 
 const RESEND_URL = "https://api.resend.com/emails";
-const TO = process.env.CONTACT_TO || "contact@qualy-tree.com";
+const TO = process.env.CONTACT_TO || "james1713@qualy-tree.com"; // 2026-10-30 대표 지시: 문의 수신 james1713@
 const FROM = process.env.CONTACT_FROM || "Qualytree <contact@qualy-tree.com>";
 
 const clean = (v, max = 500) => String(v ?? "").replace(/[\r\n]+/g, " ").trim().slice(0, max);
